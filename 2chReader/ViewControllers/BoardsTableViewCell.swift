@@ -23,7 +23,9 @@ class BoardsTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.shortName.layer.cornerRadius = 3
+        self.shortName.clipsToBounds = true
+
     }
     
 

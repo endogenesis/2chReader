@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class BoardsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
@@ -40,7 +39,7 @@ class BoardsViewController: UIViewController, UITableViewDataSource, UITableView
         
         let board = self.boards[indexPath.row]
         
-        cell.shortName.text = board.id
+        cell.shortName.text = "/" + board.id
         cell.longName.text = board.name
         
         return cell

@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 enum BoardCategory: Int {
     case ThemeCentered = 1
     case Creation
@@ -32,7 +31,6 @@ struct Board {
         self.name = dict["name"] as! String
         self.category = BoardCategory(rawValue: Int(dict["categoryId"] as! NSNumber))!
     }
-    
 }
 
 class ResourceManager: NSObject {
