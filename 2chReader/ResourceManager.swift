@@ -13,6 +13,7 @@ enum BoardCategory: Int {
     case Creation
     case HardwareSoft
     case Games
+    case None
 }
 
 struct Board {

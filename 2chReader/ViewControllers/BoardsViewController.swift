@@ -23,7 +23,7 @@ class BoardsViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.registerNib(BoardsTableViewCell.nibBoardsTableViewCell(), forCellReuseIdentifier: BoardsTableViewCell.identifier())
     }
     
-    // MARK: UITableViewDataSource
+    // MARK: - UITableViewDataSource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -45,16 +45,21 @@ class BoardsViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
+    // MARK: - UITableViewDelegate
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("toThreads", sender:indexPath)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    */
-
+    
+    //MARK: -
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toThreads" {
+            let vc = segue.destinationViewController
+            let index = sender as! NSIndexPath
+            let board = self.boards[index.row]
+            vc.navigationItem.title = board.name
+        }
+    }
 }

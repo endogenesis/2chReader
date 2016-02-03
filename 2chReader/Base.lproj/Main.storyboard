@@ -53,11 +53,31 @@
                     <navigationItem key="navigationItem" title="Boards" id="jyR-Ig-rHg"/>
                     <connections>
                         <outlet property="tableView" destination="ppL-2H-hVZ" id="FwC-Em-slI"/>
+                        <segue destination="AQa-nD-hUM" kind="show" identifier="toThreads" id="9O4-TU-t1E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O5l-3d-qrj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="849" y="157"/>
+        </scene>
+        <!--Thread List Controller-->
+        <scene sceneID="1u5-6N-4eP">
+            <objects>
+                <viewController id="AQa-nD-hUM" userLabel="Thread List Controller" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ffc-V8-6ld"/>
+                        <viewControllerLayoutGuide type="bottom" id="kfN-GP-YLg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AqP-88-9jW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Threads" id="g19-i4-buK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UaO-Ak-UaA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1526" y="157"/>
         </scene>
     </scenes>
 </document>

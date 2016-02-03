@@ -25,7 +25,6 @@ class BoardsTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.shortName.layer.cornerRadius = 3
         self.shortName.clipsToBounds = true
-
     }
     
 
