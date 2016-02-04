@@ -39,6 +39,7 @@ class BoardsViewController: UIViewController, UITableViewDataSource, UITableView
         
         let board = self.boards[indexPath.row]
         
+        board.name.characters.count
         cell.shortName.text = "/" + board.id
         cell.longName.text = board.name
         

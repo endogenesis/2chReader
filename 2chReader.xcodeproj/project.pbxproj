@@ -19,6 +19,7 @@
 		EB9A1AE31C60E9C500A66419 /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9A1AE21C60E9C500A66419 /* ResourceManager.swift */; };
 		EB9A1AE61C624D4100A66419 /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9A1AE51C624D4100A66419 /* ServerManager.swift */; };
 		EB9A1AE81C624D8400A66419 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9A1AE71C624D8400A66419 /* Thread.swift */; };
+		EB9A1AEB1C63987C00A66419 /* ThreadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9A1AEA1C63987C00A66419 /* ThreadService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		EB9A1AE21C60E9C500A66419 /* ResourceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceManager.swift; sourceTree = "<group>"; };
 		EB9A1AE51C624D4100A66419 /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
 		EB9A1AE71C624D8400A66419 /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Thread.swift; path = ../Thread.swift; sourceTree = "<group>"; };
+		EB9A1AEA1C63987C00A66419 /* ThreadService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThreadService.swift; path = Service/ThreadService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			children = (
 				EB9A1AC41C60BF3A00A66419 /* AppDelegate.swift */,
 				EB9A1AE91C624D9E00A66419 /* Models */,
+				EB9A1AEC1C63988900A66419 /* Service */,
 				EB9A1AD81C60C31900A66419 /* ViewControllers */,
 				EB9A1AC81C60BF3A00A66419 /* Main.storyboard */,
 				EB9A1ACB1C60BF3A00A66419 /* Assets.xcassets */,
@@ -136,6 +139,14 @@
 				EB9A1AE71C624D8400A66419 /* Thread.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		EB9A1AEC1C63988900A66419 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EB9A1AEA1C63987C00A66419 /* ThreadService.swift */,
+			);
+			name = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +275,7 @@
 			files = (
 				EB9A1AE61C624D4100A66419 /* ServerManager.swift in Sources */,
 				EB9A1AE81C624D8400A66419 /* Thread.swift in Sources */,
+				EB9A1AEB1C63987C00A66419 /* ThreadService.swift in Sources */,
 				EB9A1ADE1C60E0F900A66419 /* BoardsTableViewCell.swift in Sources */,
 				EB9A1AC51C60BF3A00A66419 /* AppDelegate.swift in Sources */,
 				EB9A1AD71C60C31500A66419 /* BoardsViewController.swift in Sources */,

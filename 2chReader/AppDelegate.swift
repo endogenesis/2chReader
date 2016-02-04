@@ -15,7 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let dataService = ThreadService()
+        dataService.getThreads("bi", page: 0) { (arrayWithThreads) -> Void in
+            print("i get this")
+        }
+        
         return true
     }
 
