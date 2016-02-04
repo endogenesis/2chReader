@@ -7,7 +7,19 @@
 //
 
 import UIKit
+import ObjectMapper
 
-class Thread: NSObject {
+
+class Thread: Mappable {
+    
+    var name: String?
+    
+    required init?(_ map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        name <- map["name"]
+    }
 
 }

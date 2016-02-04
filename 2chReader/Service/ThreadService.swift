@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AlamofireObjectMapper
+import Mapper
 
 class ThreadService: NSObject {
     
@@ -15,7 +17,7 @@ class ThreadService: NSObject {
     func getThreads(board:String, page:Int, callback: ([Thread?]) -> Void ) {
         serverManager.threadsFromBoard(board, page: page) { (response) -> Void in
             print(response)
-            let testThread = Thread()
+            let testThread = Mapper<Thread>().map(response)
             callback([testThread])
         }
     }
