@@ -63,7 +63,7 @@
         <!--Thread List Controller-->
         <scene sceneID="1u5-6N-4eP">
             <objects>
-                <viewController id="AQa-nD-hUM" userLabel="Thread List Controller" sceneMemberID="viewController">
+                <viewController id="AQa-nD-hUM" userLabel="Thread List Controller" customClass="ThreadsViewController" customModule="_chReader" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ffc-V8-6ld"/>
                         <viewControllerLayoutGuide type="bottom" id="kfN-GP-YLg"/>
@@ -71,9 +71,28 @@
                     <view key="view" contentMode="scaleToFill" id="AqP-88-9jW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QUi-W5-Dsj">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="AQa-nD-hUM" id="dl3-xb-NaG"/>
+                                    <outlet property="delegate" destination="AQa-nD-hUM" id="SeL-n6-Amz"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="QUi-W5-Dsj" secondAttribute="trailing" id="2zi-WV-dfA"/>
+                            <constraint firstItem="kfN-GP-YLg" firstAttribute="top" secondItem="QUi-W5-Dsj" secondAttribute="bottom" id="OMn-4m-hQ5"/>
+                            <constraint firstItem="QUi-W5-Dsj" firstAttribute="top" secondItem="ffc-V8-6ld" secondAttribute="bottom" id="eqA-K8-oWi"/>
+                            <constraint firstItem="QUi-W5-Dsj" firstAttribute="leading" secondItem="AqP-88-9jW" secondAttribute="leading" id="snh-WJ-BfX"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Threads" id="g19-i4-buK"/>
+                    <connections>
+                        <outlet property="tableView" destination="QUi-W5-Dsj" id="FVz-GB-Ltl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UaO-Ak-UaA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

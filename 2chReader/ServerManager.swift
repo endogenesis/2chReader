@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import AlamofireObjectMapper
 
 
 class ServerManager: NSObject {
@@ -16,7 +17,7 @@ class ServerManager: NSObject {
     
     let dvachURL = "https://2ch.hk/"
     
-    func threadsFromBoard(board:String, page:Int, callback:(AnyObject? -> Void)) {
+    func threadsFromBoard(board:String, page:Int, callback:([Thread]? -> Void)) {
         
         let pageString:String
         
@@ -28,16 +29,16 @@ class ServerManager: NSObject {
         
         let urlString = dvachURL + board + "/" + pageString + ".json"
         
-        Alamofire.request(.GET, urlString).validate().responseJSON { response in
-            switch response.result {
-            case .Success:
-                print(response.result.value)
-                callback(response.result.value)
-            case.Failure(let error):
-                print(error)
-                callback(nil)
+        Alamofire.request(.GET, urlString).responseArray("threads") { (response: Response<[Thread], NSError>) -> Void in
+            let threads = response.result.value
+            if let threads = threads {
+                for thread in threads {
+                    print(thread.threadNum)
+                    callback(threads)
+                }
             }
         }
+        
     }
 
 }

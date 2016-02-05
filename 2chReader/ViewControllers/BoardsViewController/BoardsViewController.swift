@@ -57,10 +57,11 @@ class BoardsViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toThreads" {
-            let vc = segue.destinationViewController
+            let vc = segue.destinationViewController as! ThreadsViewController
             let index = sender as! NSIndexPath
             let board = self.boards[index.row]
             vc.navigationItem.title = board.name
+            vc.currentBoard = board.id
         }
     }
 }

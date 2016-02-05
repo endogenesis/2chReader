@@ -9,17 +9,20 @@
 import UIKit
 import ObjectMapper
 
-
 class Thread: Mappable {
     
-    var name: String?
+    var threadNum: String?
+    var posts: [Post]?
+    var postCount: String?
     
     required init?(_ map: Map) {
         
     }
     
     func mapping(map: Map) {
-        name <- map["name"]
+        threadNum <- map["thread_num"]
+        posts <- map["posts"]
+        postCount <- map["postCount"]
     }
 
 }
