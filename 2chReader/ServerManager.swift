@@ -29,14 +29,20 @@ class ServerManager: NSObject {
         
         let urlString = dvachURL + board + "/" + pageString + ".json"
         
-        Alamofire.request(.GET, urlString).responseArray("threads") { (response: Response<[Thread], NSError>) -> Void in
-            let threads = response.result.value
-            if let threads = threads {
-                for thread in threads {
-                    print(thread.threadNum)
+        Alamofire.request(.GET, urlString).validate().responseArray("threads") { (response: Response<[Thread], NSError>) -> Void in
+            switch response.result {
+            case .Success:
+                let threads = response.result.value
+                if let threads = threads {
                     callback(threads)
+                } else {
+                    callback(nil)
                 }
+            case .Failure(let error):
+                print(error)
+                callback(nil)
             }
+            
         }
         
     }

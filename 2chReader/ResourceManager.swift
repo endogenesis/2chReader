@@ -68,10 +68,15 @@ class ResourceManager: NSObject {
             case .ThemeCentered: arrayThemeCentered.append(board)
             case .None: arrayNone.append(board)
             }
-            
         }
         
-        let arrayOfBoardsArray: [[Board]] = [arrayThemeCentered, arrayCreation, arrayHardwareSoft, arrayGames, arrayNone]
+        var arrayOfBoardsArray: [[Board]] = [arrayThemeCentered, arrayCreation, arrayHardwareSoft, arrayGames, arrayNone]
+        
+        for (index, array) in arrayOfBoardsArray.enumerate() {
+            if array.count == 0 {
+                arrayOfBoardsArray.removeAtIndex(index)
+            }
+        }
         
         return arrayOfBoardsArray
     }

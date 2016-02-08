@@ -12,7 +12,7 @@ class BoardsViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
-    var boards:[Board] = []
+    var boards:[[Board]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,29 +21,45 @@ class BoardsViewController: UIViewController, UITableViewDataSource, UITableView
         self.boards = resManager.boards()
         
         self.tableView.registerNib(BoardsTableViewCell.nibBoardsTableViewCell(), forCellReuseIdentifier: BoardsTableViewCell.identifier())
+        
     }
     
     // MARK: - UITableViewDataSource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return self.boards.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return boards.count
+        return self.boards[section].count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier(BoardsTableViewCell.identifier(), forIndexPath: indexPath) as! BoardsTableViewCell
         
-        let board = self.boards[indexPath.row]
+        let board = self.boards[indexPath.section][indexPath.row]
         
         board.name.characters.count
         cell.shortName.text = "/" + board.id
         cell.longName.text = board.name
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let board = self.boards[section].first!
+        let headerForSection:String
+        
+        switch board.category! {
+        case .Creation: headerForSection = "Creation"
+        case .Games : headerForSection = "Games"
+        case .HardwareSoft: headerForSection = "HardwareSoft"
+        case .ThemeCentered: headerForSection = "ThemeCentered"
+        case .None: headerForSection = "None"
+        }
+        
+        return headerForSection
     }
     
     // MARK: - UITableViewDelegate
@@ -59,7 +75,7 @@ class BoardsViewController: UIViewController, UITableViewDataSource, UITableView
         if segue.identifier == "toThreads" {
             let vc = segue.destinationViewController as! ThreadsViewController
             let index = sender as! NSIndexPath
-            let board = self.boards[index.row]
+            let board = self.boards[index.section][index.row]
             vc.navigationItem.title = board.name
             vc.currentBoard = board.id
         }

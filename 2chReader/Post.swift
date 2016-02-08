@@ -13,7 +13,18 @@ class Post: Mappable {
     
     var comment: String?
     var num: String?
-    var subject :String?
+    var subject: String?
+    var date :String?
+    
+    var postDate: NSDate? {
+            if let time = self.timestamp {
+                let postDate = NSDate(timeIntervalSince1970: NSTimeInterval(Double(time)))
+                return postDate
+            } else {
+                return nil
+            }
+        }
+    var timestamp: Int?
     
     required init?(_ map: Map) {
         
@@ -23,6 +34,7 @@ class Post: Mappable {
         comment <- map["comment"]
         num <- map["num"]
         subject <- map["subject"]
+        date <- map["date"]
+        timestamp <- map["timestamp"]
     }
-
 }

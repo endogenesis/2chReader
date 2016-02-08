@@ -24,7 +24,7 @@
         <!--Boards-->
         <scene sceneID="Las-UT-JdQ">
             <objects>
-                <viewController id="dT7-HM-lcD" customClass="BoardsViewController" customModule="_chReader" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="dT7-HM-lcD" customClass="BoardsViewController" customModule="_chReader" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9XC-7m-t1C"/>
                         <viewControllerLayoutGuide type="bottom" id="ehP-Ee-pmx"/>
@@ -63,7 +63,7 @@
         <!--Thread List Controller-->
         <scene sceneID="1u5-6N-4eP">
             <objects>
-                <viewController id="AQa-nD-hUM" userLabel="Thread List Controller" customClass="ThreadsViewController" customModule="_chReader" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="AQa-nD-hUM" userLabel="Thread List Controller" customClass="ThreadsViewController" customModule="_chReader" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ffc-V8-6ld"/>
                         <viewControllerLayoutGuide type="bottom" id="kfN-GP-YLg"/>
