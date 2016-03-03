@@ -27,7 +27,6 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewWillAppear(animated: Bool) {
         ServerManager.sharedInstance.threadsFromBoard(self.currentBoard, page: 0) { (threads) -> Void in
             self.threads = threads!
-            print(Realm.Configuration.defaultConfiguration.path!)
             let realm = try! Realm()
             // You only need to do this once (per thread)
             

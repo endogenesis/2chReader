@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,10 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        ServerManager.sharedInstance.threadsFromBoard("bi", page: 0) { (threads:[Thread]?) -> Void in
-            print("GO")
-        }
-        
+        print(Realm.Configuration.defaultConfiguration.path!)
         return true
     }
 

@@ -12,19 +12,10 @@ import RealmSwift
 
 class Post: Object, Mappable {
     
-    dynamic var comment: String?
     dynamic var num: String?
+    dynamic var comment: String?
     dynamic var subject: String?
     dynamic var date :String?
-    
-//    var postDate: NSDate? {
-//            if let time = self.timestamp {
-//                let postDate = NSDate(timeIntervalSince1970: NSTimeInterval(Double(time)))
-//                return postDate
-//            } else {
-//                return nil
-//            }
-//        }
     var timestamp: Int?
     
     required convenience init?(_ map: Map) {
