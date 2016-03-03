@@ -33,7 +33,7 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
             
             // Add to the Realm inside a transaction
             try! realm.write {
-                realm.add(self.threads)
+                realm.add(self.threads, update:true)
             }
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in

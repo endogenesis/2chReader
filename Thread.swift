@@ -57,5 +57,9 @@ class Thread: Object, Mappable {
         posts <- (map["posts"], ArrayTransform<Post>())
         postCount <- map["posts_count"]
     }
+    
+    override class func primaryKey() -> String {
+        return "threadNum"
+    }
 
 }

@@ -38,4 +38,8 @@ class Post: Object, Mappable {
         date <- map["date"]
         timestamp <- map["timestamp"]
     }
+    
+    override class func primaryKey() -> String {
+        return "num"
+    }
 }
