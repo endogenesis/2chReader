@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ThreadsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -26,6 +27,14 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewWillAppear(animated: Bool) {
         ServerManager.sharedInstance.threadsFromBoard(self.currentBoard, page: 0) { (threads) -> Void in
             self.threads = threads!
+            print(Realm.Configuration.defaultConfiguration.path!)
+            let realm = try! Realm()
+            // You only need to do this once (per thread)
+            
+            // Add to the Realm inside a transaction
+            try! realm.write {
+                realm.add(self.threads)
+            }
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
@@ -53,7 +62,7 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCellWithIdentifier("id", forIndexPath: indexPath) 
         
         let thread = self.threads[indexPath.row]
-        let firstPostInThread = thread.posts?.first
+        let firstPostInThread = thread.posts.first
         cell.textLabel?.text = firstPostInThread?.comment
         return cell
     }

@@ -8,26 +8,27 @@
 
 import UIKit
 import ObjectMapper
+import RealmSwift
 
-class Post: Mappable {
+class Post: Object, Mappable {
     
-    var comment: String?
-    var num: String?
-    var subject: String?
-    var date :String?
+    dynamic var comment: String?
+    dynamic var num: String?
+    dynamic var subject: String?
+    dynamic var date :String?
     
-    var postDate: NSDate? {
-            if let time = self.timestamp {
-                let postDate = NSDate(timeIntervalSince1970: NSTimeInterval(Double(time)))
-                return postDate
-            } else {
-                return nil
-            }
-        }
+//    var postDate: NSDate? {
+//            if let time = self.timestamp {
+//                let postDate = NSDate(timeIntervalSince1970: NSTimeInterval(Double(time)))
+//                return postDate
+//            } else {
+//                return nil
+//            }
+//        }
     var timestamp: Int?
     
-    required init?(_ map: Map) {
-        
+    required convenience init?(_ map: Map) {
+        self.init()
     }
     
     func mapping(map: Map) {
