@@ -13,8 +13,16 @@ import RealmSwift
 class Thread: Object, Mappable {
     
     dynamic var threadNum: String?
-    //dynamic var posts: [Post]?
+    var subject: String? {
+        let firstPostInThread = posts.first
+        if (firstPostInThread?.subject == "") {
+            return threadNum
+        }
+        return firstPostInThread?.subject
+    }
     var posts = List<Post>()
+    
+    
     dynamic var postCount = 0
     
     required convenience init?(_ map: Map) {

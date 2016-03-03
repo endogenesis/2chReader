@@ -27,7 +27,7 @@ class ServerManager: NSObject {
             pageString = String(page)
         }
         
-        let urlString = dvachURL + board + "/" + pageString + ".json"
+        let urlString = dvachURL + board + "/" + pageString + ".json" //"https://2ch.hk/bi/index.json"
         
         Alamofire.request(.GET, urlString).validate().responseArray("threads") { (response: Response<[Thread], NSError>) -> Void in
             switch response.result {
@@ -42,9 +42,6 @@ class ServerManager: NSObject {
                 print(error)
                 callback(nil)
             }
-            
         }
-        
     }
-
 }

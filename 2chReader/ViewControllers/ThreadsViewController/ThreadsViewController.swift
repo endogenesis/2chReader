@@ -61,8 +61,7 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCellWithIdentifier("id", forIndexPath: indexPath) 
         
         let thread = self.threads[indexPath.row]
-        let firstPostInThread = thread.posts.first
-        cell.textLabel?.text = firstPostInThread?.comment
+        cell.textLabel?.text = thread.subject
         return cell
     }
 
