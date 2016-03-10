@@ -25,12 +25,10 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewWillAppear(animated: Bool) {
+        let realm = try! Realm()
+       // self.threads = realm.objects(Thread).filter("age < 2")
         ServerManager.sharedInstance.threadsFromBoard(self.currentBoard, page: 0) { (threads) -> Void in
             self.threads = threads!
-            let realm = try! Realm()
-            // You only need to do this once (per thread)
-            
-            // Add to the Realm inside a transaction
             try! realm.write {
                 realm.add(self.threads, update:true)
             }
@@ -39,11 +37,6 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.tableView.reloadData()
             })
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - UITableViewDataSource

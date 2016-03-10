@@ -44,4 +44,34 @@ class ServerManager: NSObject {
             }
         }
     }
+    
+    func boardWithThreads(board:String, page:Int, callback:(Board? -> Void)) {
+        
+        let pageString:String
+        
+        if page == 0 {
+            pageString = "index"
+        } else {
+            pageString = String(page)
+        }
+        
+        let urlString = dvachURL + board + "/" + pageString + ".json" //"https://2ch.hk/bi/index.json"
+        
+        Alamofire.request(.GET, urlString).validate().responseObject { (response: Response<Board, NSError>) -> Void in
+            switch response.result {
+            case .Success:
+                let board = response.result.value
+                if let board = board {
+                    callback(board)
+                } else {
+                    callback(nil)
+                }
+            case .Failure(let error):
+                print(error)
+                callback(nil)
+            }
+        }
+    }
+    
+    
 }
