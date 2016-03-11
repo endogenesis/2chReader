@@ -14,23 +14,27 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var tableView: UITableView!
     
     var currentBoard: String = ""
-    var threads :[Thread] = []
+    var board: BoardRealm = BoardRealm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "id")
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
         let realm = try! Realm()
-       // self.threads = realm.objects(Thread).filter("age < 2")
-        ServerManager.sharedInstance.threadsFromBoard(self.currentBoard, page: 0) { (threads) -> Void in
-            self.threads = threads!
-            try! realm.write {
-                realm.add(self.threads, update:true)
+        let boardFromRealm = realm.objectForPrimaryKey(BoardRealm.self, key: self.currentBoard)
+        if let boardFromRealm = boardFromRealm {
+            self.board = boardFromRealm
+        }
+        
+        ServerManager.sharedInstance.boardWithThreads(self.currentBoard, page: 0) { (board) -> Void in
+            if let board = board {
+                self.board = board
+                try! realm.write {
+                    realm.add(self.board, update:true)
+                }
             }
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -46,14 +50,14 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return threads.count
+        return self.board.threads.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("id", forIndexPath: indexPath) 
         
-        let thread = self.threads[indexPath.row]
+        let thread = self.board.threads[indexPath.row]
         cell.textLabel?.text = thread.subject
         return cell
     }
