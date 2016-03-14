@@ -92,11 +92,30 @@
                     <navigationItem key="navigationItem" title="Threads" id="g19-i4-buK"/>
                     <connections>
                         <outlet property="tableView" destination="QUi-W5-Dsj" id="FVz-GB-Ltl"/>
+                        <segue destination="TvK-Tx-pWv" kind="show" identifier="toPosts" id="xfx-Ve-Xk1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UaO-Ak-UaA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1526" y="157"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="OeL-vh-tem">
+            <objects>
+                <viewController id="TvK-Tx-pWv" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Fhr-86-mLz"/>
+                        <viewControllerLayoutGuide type="bottom" id="wiM-gi-er6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bJ9-Ws-xUh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FLx-JG-8hB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2232" y="157"/>
         </scene>
     </scenes>
 </document>

@@ -61,5 +61,12 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.textLabel?.text = thread.subject
         return cell
     }
+    
+    // MARK: - UITableViewDelegate
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("toPosts", sender:nil)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
 
 }
