@@ -6,7 +6,7 @@
 //  Copyright © 2016 Endogenesis. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import ObjectMapper
 import RealmSwift
 

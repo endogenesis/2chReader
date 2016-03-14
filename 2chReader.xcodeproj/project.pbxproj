@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		254C92B28AD0DEBDF47ADD55 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A87BBCA02D5E8843B5AD0FF /* Pods.framework */; };
+		EB1098B31C96B0BD003A1259 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1098B21C96B0BD003A1259 /* PostsViewController.swift */; };
 		EB7D35931C887CBB001A1ACB /* ThreadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7D35921C887CBB001A1ACB /* ThreadsViewController.swift */; };
 		EB7D35961C887CD4001A1ACB /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7D35941C887CD4001A1ACB /* Post.swift */; };
 		EB7D35971C887CD4001A1ACB /* RealmListTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7D35951C887CD4001A1ACB /* RealmListTransform.swift */; };
 		EB7D35991C887DA2001A1ACB /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7D35981C887DA2001A1ACB /* Thread.swift */; };
+		EB7D359B1C91BC2A001A1ACB /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7D359A1C91BC2A001A1ACB /* Board.swift */; };
 		EB9A1AC51C60BF3A00A66419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9A1AC41C60BF3A00A66419 /* AppDelegate.swift */; };
 		EB9A1ACA1C60BF3A00A66419 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB9A1AC81C60BF3A00A66419 /* Main.storyboard */; };
 		EB9A1ACC1C60BF3A00A66419 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB9A1ACB1C60BF3A00A66419 /* Assets.xcassets */; };
@@ -28,10 +30,12 @@
 		4A87BBCA02D5E8843B5AD0FF /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		538220ECE339E90389DDD9A5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		89E6A3E487372A8FF0E4F321 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		EB1098B21C96B0BD003A1259 /* PostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostsViewController.swift; path = ViewControllers/PostsViewController/PostsViewController.swift; sourceTree = "<group>"; };
 		EB7D35921C887CBB001A1ACB /* ThreadsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThreadsViewController.swift; path = ViewControllers/ThreadsViewController/ThreadsViewController.swift; sourceTree = "<group>"; };
 		EB7D35941C887CD4001A1ACB /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Post.swift; path = Models/Post.swift; sourceTree = "<group>"; };
 		EB7D35951C887CD4001A1ACB /* RealmListTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmListTransform.swift; path = Models/RealmListTransform.swift; sourceTree = "<group>"; };
 		EB7D35981C887DA2001A1ACB /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Thread.swift; path = Models/Thread.swift; sourceTree = "<group>"; };
+		EB7D359A1C91BC2A001A1ACB /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Board.swift; path = Models/Board.swift; sourceTree = "<group>"; };
 		EB9A1AC11C60BF3A00A66419 /* 2chReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2chReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9A1AC41C60BF3A00A66419 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB9A1AC91C60BF3A00A66419 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -75,6 +79,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		EB1098B41C96B45F003A1259 /* PostsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EB1098B21C96B0BD003A1259 /* PostsViewController.swift */,
+			);
+			name = PostsViewController;
+			sourceTree = "<group>";
+		};
 		EB9A1AB81C60BF3A00A66419 = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +125,7 @@
 			children = (
 				EB9A1AEF1C64DB6A00A66419 /* BoardsViewController */,
 				EB9A1AF81C64DC7600A66419 /* ThreadsViewController */,
+				EB1098B41C96B45F003A1259 /* PostsViewController */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -120,6 +133,7 @@
 		EB9A1AE91C624D9E00A66419 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EB7D359A1C91BC2A001A1ACB /* Board.swift */,
 				EB7D35981C887DA2001A1ACB /* Thread.swift */,
 				EB7D35941C887CD4001A1ACB /* Post.swift */,
 				EB7D35951C887CD4001A1ACB /* RealmListTransform.swift */,
@@ -183,6 +197,7 @@
 				TargetAttributes = {
 					EB9A1AC01C60BF3A00A66419 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = S5ZHF6AUWC;
 					};
 				};
 			};
@@ -274,8 +289,10 @@
 			files = (
 				EB9A1AF31C64DB6A00A66419 /* BoardsTableViewCell.swift in Sources */,
 				EB9A1AF51C64DB6A00A66419 /* BoardsViewController.swift in Sources */,
+				EB7D359B1C91BC2A001A1ACB /* Board.swift in Sources */,
 				EB9A1AE61C624D4100A66419 /* ServerManager.swift in Sources */,
 				EB7D35961C887CD4001A1ACB /* Post.swift in Sources */,
+				EB1098B31C96B0BD003A1259 /* PostsViewController.swift in Sources */,
 				EB7D35971C887CD4001A1ACB /* RealmListTransform.swift in Sources */,
 				EB9A1AC51C60BF3A00A66419 /* AppDelegate.swift in Sources */,
 				EB7D35931C887CBB001A1ACB /* ThreadsViewController.swift in Sources */,
@@ -323,6 +340,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -367,6 +385,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -392,10 +411,13 @@
 			baseConfigurationReference = 538220ECE339E90389DDD9A5 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = 2chReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "EN.-chReader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -404,10 +426,13 @@
 			baseConfigurationReference = 89E6A3E487372A8FF0E4F321 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = 2chReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "EN.-chReader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

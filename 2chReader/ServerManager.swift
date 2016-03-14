@@ -65,11 +65,13 @@ class ServerManager: NSObject {
     
     func urlGetThreads(board:String, page:Int) -> String {
         let pageString:String
+        
         if page == 0 {
             pageString = "index"
         } else {
             pageString = String(page)
         }
+        
         let urlString = self.dvachURL + board + "/" + pageString + ".json"
         // example: "https://2ch.hk/bi/index.json"
         
