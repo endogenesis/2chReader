@@ -17,6 +17,7 @@ class Post: Object, Mappable {
     dynamic var subject: String?
     dynamic var date :String?
     var timestamp: Int?
+    var files = List<File>()
     
     required convenience init?(_ map: Map) {
         self.init()
@@ -28,6 +29,7 @@ class Post: Object, Mappable {
         subject <- map["subject"]
         date <- map["date"]
         timestamp <- map["timestamp"]
+        files <- (map["files"], ArrayTransform<File>())
     }
     
     override class func primaryKey() -> String {

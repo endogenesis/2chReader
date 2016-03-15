@@ -11,10 +11,23 @@ import UIKit
 class ThreadTableViewCell: UITableViewCell {
 
     @IBOutlet weak var threadImage: UIImageView!
+    
+    @IBOutlet weak var threadNameLabel: UILabel!
+    @IBOutlet weak var threadFirstPostLabel: UILabel!
+    
+    class func identifier() -> String {
+        return "ThreadTableViewCellId"
+    }
+    
+    class func nibThreadTableViewCell() -> UINib {
+        return UINib(nibName: "ThreadTableViewCell", bundle: NSBundle.mainBundle())
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+    
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

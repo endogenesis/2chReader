@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import AlamofireImage
 
 class ThreadsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -18,8 +19,9 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "id")
+        
+        self.tableView.registerNib(ThreadTableViewCell.nibThreadTableViewCell(), forCellReuseIdentifier: ThreadTableViewCell.identifier())
+        self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -55,10 +57,13 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("id", forIndexPath: indexPath) 
+        let cell = tableView.dequeueReusableCellWithIdentifier(ThreadTableViewCell.identifier(), forIndexPath: indexPath) as! ThreadTableViewCell
         
         let thread = self.board.threads[indexPath.row]
-        cell.textLabel?.text = thread.subject
+        cell.threadNameLabel.text = thread.subject
+        cell.threadFirstPostLabel.text = thread.posts.first?.comment
+        
+        cell.imageView?.
         return cell
     }
     
@@ -68,5 +73,8 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
         self.performSegueWithIdentifier("toPosts", sender:nil)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100;
+    }
 }

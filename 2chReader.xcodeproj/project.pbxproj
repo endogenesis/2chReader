@@ -26,6 +26,7 @@
 		EB9A1AF51C64DB6A00A66419 /* BoardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9A1AF21C64DB6A00A66419 /* BoardsViewController.swift */; };
 		EB9EACEF1C96BE36001D7B9E /* ThreadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9EACED1C96BE36001D7B9E /* ThreadTableViewCell.swift */; };
 		EB9EACF01C96BE36001D7B9E /* ThreadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB9EACEE1C96BE36001D7B9E /* ThreadTableViewCell.xib */; };
+		EB9EACF21C98580D001D7B9E /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9EACF11C98580D001D7B9E /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		EB9A1AF21C64DB6A00A66419 /* BoardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardsViewController.swift; sourceTree = "<group>"; };
 		EB9EACED1C96BE36001D7B9E /* ThreadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThreadTableViewCell.swift; path = ViewControllers/ThreadsViewController/ThreadTableViewCell.swift; sourceTree = "<group>"; };
 		EB9EACEE1C96BE36001D7B9E /* ThreadTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ThreadTableViewCell.xib; path = ViewControllers/ThreadsViewController/ThreadTableViewCell.xib; sourceTree = "<group>"; };
+		EB9EACF11C98580D001D7B9E /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = File.swift; path = Models/File.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				EB7D359A1C91BC2A001A1ACB /* Board.swift */,
 				EB7D35981C887DA2001A1ACB /* Thread.swift */,
 				EB7D35941C887CD4001A1ACB /* Post.swift */,
+				EB9EACF11C98580D001D7B9E /* File.swift */,
 				EB7D35951C887CD4001A1ACB /* RealmListTransform.swift */,
 				EB9A1AE21C60E9C500A66419 /* ResourceManager.swift */,
 				EB9A1AE51C624D4100A66419 /* ServerManager.swift */,
@@ -304,6 +307,7 @@
 				EB9A1AC51C60BF3A00A66419 /* AppDelegate.swift in Sources */,
 				EB7D35931C887CBB001A1ACB /* ThreadsViewController.swift in Sources */,
 				EB7D35991C887DA2001A1ACB /* Thread.swift in Sources */,
+				EB9EACF21C98580D001D7B9E /* File.swift in Sources */,
 				EB9A1AE31C60E9C500A66419 /* ResourceManager.swift in Sources */,
 				EB9EACEF1C96BE36001D7B9E /* ThreadTableViewCell.swift in Sources */,
 			);

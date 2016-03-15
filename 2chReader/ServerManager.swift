@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import AlamofireImage
 import AlamofireObjectMapper
 
 
@@ -60,6 +61,21 @@ class ServerManager: NSObject {
         }
     }
     
+    func loadImage(board:String, path:String, callback:(UIImage? -> Void)) {
+        
+        Alamofire.request(.GET, self.urlForImage(board, path: path)).responseImage { response in
+                debugPrint(response)
+                
+                print(response.request)
+                print(response.response)
+                debugPrint(response.result)
+                
+                if let image = response.result.value {
+                    print("image downloaded: \(image)")
+                }
+        }
+        
+    }
     
     //MARK: Utils
     
@@ -74,7 +90,11 @@ class ServerManager: NSObject {
         
         let urlString = self.dvachURL + board + "/" + pageString + ".json"
         // example: "https://2ch.hk/bi/index.json"
-        
+        return urlString
+    }
+    
+    func urlForImage(board:String, path:String) -> String {
+        let urlString = self.dvachURL + board + "/" + path
         return urlString
     }
 }

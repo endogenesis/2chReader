@@ -21,10 +21,16 @@
                             <constraint firstAttribute="height" constant="80" id="ja4-W6-wst"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQm-Fy-Atl">
-                        <rect key="frame" x="96" y="8" width="216" height="80"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQm-Fy-Atl" userLabel="Thread Post Label">
+                        <rect key="frame" x="96" y="16" width="216" height="72"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YUX-0D-9p2" userLabel="Thread Name Label">
+                        <rect key="frame" x="96" y="8" width="216" height="0.0"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -32,14 +38,19 @@
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="O4d-BP-hkB" secondAttribute="bottom" constant="8" id="GPu-cc-Msl"/>
                     <constraint firstItem="O4d-BP-hkB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="N57-IZ-L56"/>
                     <constraint firstAttribute="trailing" secondItem="fQm-Fy-Atl" secondAttribute="trailing" constant="8" id="OAF-7I-hAO"/>
-                    <constraint firstItem="fQm-Fy-Atl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="V33-dJ-KcY"/>
+                    <constraint firstItem="fQm-Fy-Atl" firstAttribute="top" secondItem="YUX-0D-9p2" secondAttribute="bottom" constant="8" id="Qej-vl-GDG"/>
+                    <constraint firstAttribute="trailing" secondItem="YUX-0D-9p2" secondAttribute="trailing" constant="8" id="U9J-z9-oEN"/>
                     <constraint firstAttribute="bottom" secondItem="fQm-Fy-Atl" secondAttribute="bottom" constant="8" id="cMG-dR-H6h"/>
                     <constraint firstItem="fQm-Fy-Atl" firstAttribute="leading" secondItem="O4d-BP-hkB" secondAttribute="trailing" constant="8" id="cOX-si-4jN"/>
                     <constraint firstItem="O4d-BP-hkB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="nXL-Bh-txc"/>
+                    <constraint firstItem="YUX-0D-9p2" firstAttribute="leading" secondItem="O4d-BP-hkB" secondAttribute="trailing" constant="8" id="qzC-fz-eKw"/>
+                    <constraint firstItem="YUX-0D-9p2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="t2l-Xg-Uub"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="threadFirstPostLabel" destination="fQm-Fy-Atl" id="abj-4l-YtN"/>
                 <outlet property="threadImage" destination="O4d-BP-hkB" id="lgd-jt-gYS"/>
+                <outlet property="threadNameLabel" destination="YUX-0D-9p2" id="QJM-vm-TCt"/>
             </connections>
             <point key="canvasLocation" x="311" y="313.5"/>
         </tableViewCell>
