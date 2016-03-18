@@ -17,7 +17,7 @@ class Post: Object, Mappable {
     dynamic var subject: String?
     dynamic var date :String?
     var timestamp: Int?
-    var files = List<File>()
+    var files = List<FileModel>()
     
     required convenience init?(_ map: Map) {
         self.init()
@@ -29,10 +29,26 @@ class Post: Object, Mappable {
         subject <- map["subject"]
         date <- map["date"]
         timestamp <- map["timestamp"]
-        files <- (map["files"], ArrayTransform<File>())
+        files <- (map["files"], ArrayTransform<FileModel>())
     }
     
     override class func primaryKey() -> String {
         return "num"
     }
 }
+
+class FileModel: Object, Mappable {
+    
+    dynamic var thumbPath: String?
+    dynamic var fullImagePath: String?
+    
+    required convenience init?(_ map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        thumbPath <- map["thumbnail"]
+        fullImagePath <- map["path"]
+    }
+}
+

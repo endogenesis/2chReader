@@ -74,7 +74,6 @@ class ServerManager: NSObject {
                     print("image downloaded: \(image)")
                 }
         }
-        
     }
     
     //MARK: Utils

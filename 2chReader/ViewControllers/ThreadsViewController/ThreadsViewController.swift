@@ -61,9 +61,16 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let thread = self.board.threads[indexPath.row]
         cell.threadNameLabel.text = thread.subject
-        cell.threadFirstPostLabel.text = thread.posts.first?.comment
-        
-        cell.imageView?.
+        let firstPost = thread.posts.first
+        if let firstPost = firstPost {
+            cell.threadFirstPostLabel.text = firstPost.comment
+            let fileModel = firstPost.files.first
+            if let fileModel = fileModel {
+                let imageUrl = NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id!, path: fileModel.thumbPath!))
+                
+                cell.threadImage?.af_setImageWithURL(imageUrl!)
+            }
+        }
         return cell
     }
     
