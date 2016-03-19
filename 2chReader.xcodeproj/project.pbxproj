@@ -91,6 +91,24 @@
 			name = PostsViewController;
 			sourceTree = "<group>";
 		};
+		EB329EC11C9D8DB3001FEDEC /* BoardCell */ = {
+			isa = PBXGroup;
+			children = (
+				EB9A1AF01C64DB6A00A66419 /* BoardsTableViewCell.swift */,
+				EB9A1AF11C64DB6A00A66419 /* BoardsTableViewCell.xib */,
+			);
+			name = BoardCell;
+			sourceTree = "<group>";
+		};
+		EB329EC21C9D8DC1001FEDEC /* ThreadCell */ = {
+			isa = PBXGroup;
+			children = (
+				EB9EACED1C96BE36001D7B9E /* ThreadTableViewCell.swift */,
+				EB9EACEE1C96BE36001D7B9E /* ThreadTableViewCell.xib */,
+			);
+			name = ThreadCell;
+			sourceTree = "<group>";
+		};
 		EB9A1AB81C60BF3A00A66419 = {
 			isa = PBXGroup;
 			children = (
@@ -151,8 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				EB9A1AF21C64DB6A00A66419 /* BoardsViewController.swift */,
-				EB9A1AF01C64DB6A00A66419 /* BoardsTableViewCell.swift */,
-				EB9A1AF11C64DB6A00A66419 /* BoardsTableViewCell.xib */,
+				EB329EC11C9D8DB3001FEDEC /* BoardCell */,
 			);
 			name = BoardsViewController;
 			path = ViewControllers/BoardsViewController;
@@ -162,8 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				EB7D35921C887CBB001A1ACB /* ThreadsViewController.swift */,
-				EB9EACED1C96BE36001D7B9E /* ThreadTableViewCell.swift */,
-				EB9EACEE1C96BE36001D7B9E /* ThreadTableViewCell.xib */,
+				EB329EC21C9D8DC1001FEDEC /* ThreadCell */,
 			);
 			name = ThreadsViewController;
 			sourceTree = "<group>";
@@ -203,7 +219,7 @@
 				TargetAttributes = {
 					EB9A1AC01C60BF3A00A66419 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = S5ZHF6AUWC;
+						DevelopmentTeam = FK7P698MNG;
 					};
 				};
 			};

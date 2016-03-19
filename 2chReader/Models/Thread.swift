@@ -22,7 +22,6 @@ class Thread: Object, Mappable {
     }
     var posts = List<Post>()
     
-    
     dynamic var postCount = 0
     
     required convenience init?(_ map: Map) {
@@ -38,5 +37,4 @@ class Thread: Object, Mappable {
     override class func primaryKey() -> String {
         return "threadNum"
     }
-
 }

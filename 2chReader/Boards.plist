@@ -492,11 +492,19 @@
 	</dict>
 	<dict>
 		<key>boardId</key>
-		<string>moba</string>
+		<string>b</string>
 		<key>name</key>
-		<string>Multiplayer Online Battle Arena</string>
+		<string>Bred</string>
 		<key>categoryId</key>
-		<integer>4</integer>
+		<integer>5</integer>
+	</dict>
+	<dict>
+		<key>boardId</key>
+		<string>sex</string>
+		<key>name</key>
+		<string>sex</string>
+		<key>categoryId</key>
+		<integer>5</integer>
 	</dict>
 </array>
 </plist>

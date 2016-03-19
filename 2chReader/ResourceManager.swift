@@ -70,7 +70,7 @@ class ResourceManager: NSObject {
             }
         }
         
-        var arrayOfBoardsArray: [[Board]] = [arrayThemeCentered, arrayCreation, arrayHardwareSoft, arrayGames, arrayNone]
+        var arrayOfBoardsArray: [[Board]] = [arrayNone, arrayThemeCentered, arrayCreation, arrayHardwareSoft, arrayGames]
         
         for (index, array) in arrayOfBoardsArray.enumerate() {
             if array.count == 0 {

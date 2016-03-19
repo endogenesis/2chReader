@@ -21,7 +21,6 @@ class BoardsViewController: UIViewController, UITableViewDataSource, UITableView
         self.boards = resManager.boards()
         
         self.tableView.registerNib(BoardsTableViewCell.nibBoardsTableViewCell(), forCellReuseIdentifier: BoardsTableViewCell.identifier())
-        
     }
     
     // MARK: - UITableViewDataSource

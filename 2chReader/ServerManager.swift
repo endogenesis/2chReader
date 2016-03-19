@@ -18,28 +18,7 @@ class ServerManager: NSObject {
     
     let dvachURL = "https://2ch.hk/"
     
-    
     //MARK: Server Methods
-    
-    func threadsFromBoard(board:String, page:Int, callback:([Thread]? -> Void)) {
-        
-        let urlString = self.urlGetThreads(board, page: page)
-        
-        Alamofire.request(.GET, urlString).validate().responseArray("threads") { (response: Response<[Thread], NSError>) -> Void in
-            switch response.result {
-            case .Success:
-                let threads = response.result.value
-                if let threads = threads {
-                    callback(threads)
-                } else {
-                    callback(nil)
-                }
-            case .Failure(let error):
-                print(error)
-                callback(nil)
-            }
-        }
-    }
 
     func boardWithThreads(board:String, page:Int, callback:(BoardRealm? -> Void)) {
         
@@ -61,26 +40,32 @@ class ServerManager: NSObject {
         }
     }
     
-    func loadImage(board:String, path:String, callback:(UIImage? -> Void)) {
+    func loadThreadWithPosts(boardID: String, threadNum: String, callback:(Thread? -> Void)) {
         
-        Alamofire.request(.GET, self.urlForImage(board, path: path)).responseImage { response in
-                debugPrint(response)
-                
-                print(response.request)
-                print(response.response)
-                debugPrint(response.result)
-                
-                if let image = response.result.value {
-                    print("image downloaded: \(image)")
+        let urlString = self.urlGetPosts(boardID, thread: threadNum, postThreadNumber: 0)
+        
+        Alamofire.request(.GET, urlString).validate().responseObject { (response: Response<Thread, NSError>) -> Void in
+            switch response.result {
+            case .Success:
+                let thread = response.result.value
+                if let thread = thread {
+                    callback(thread)
+                } else {
+                    callback(nil)
                 }
+            case .Failure(let error):
+                print(error)
+                callback(nil)
+            }
         }
     }
     
     //MARK: Utils
     
-    func urlGetThreads(board:String, page:Int) -> String {
-        let pageString:String
+    func urlGetThreads(board: String, page: Int) -> String {
+        // example: "https://2ch.hk/bi/index.json"
         
+        let pageString:String
         if page == 0 {
             pageString = "index"
         } else {
@@ -88,7 +73,13 @@ class ServerManager: NSObject {
         }
         
         let urlString = self.dvachURL + board + "/" + pageString + ".json"
-        // example: "https://2ch.hk/bi/index.json"
+        return urlString
+    }
+    
+    func urlGetPosts(board: String, thread :String, postThreadNumber: Int) -> String {
+        // example: https://2ch.hk/makaba/mobile.fcgi?task=get_thread&board=abu&thread=42375&post=0
+        
+        let urlString = String(format: "https://2ch.hk/makaba/mobile.fcgi?task=get_thread&board=%@&thread=%@&post=%@", arguments: [board, thread, String(postThreadNumber)])
         return urlString
     }
     
