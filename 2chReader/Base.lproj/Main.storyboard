@@ -99,10 +99,10 @@
             </objects>
             <point key="canvasLocation" x="1526" y="157"/>
         </scene>
-        <!--View Controller-->
+        <!--Posts-->
         <scene sceneID="OeL-vh-tem">
             <objects>
-                <viewController id="TvK-Tx-pWv" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="TvK-Tx-pWv" customClass="PostsViewController" customModule="_chReader" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fhr-86-mLz"/>
                         <viewControllerLayoutGuide type="bottom" id="wiM-gi-er6"/>
@@ -110,8 +110,28 @@
                     <view key="view" contentMode="scaleToFill" id="bJ9-Ws-xUh">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eei-JA-BGq">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="TvK-Tx-pWv" id="iYc-Bq-G3d"/>
+                                    <outlet property="delegate" destination="TvK-Tx-pWv" id="X0G-p6-azq"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wiM-gi-er6" firstAttribute="top" secondItem="eei-JA-BGq" secondAttribute="bottom" id="RNN-uD-kOZ"/>
+                            <constraint firstItem="eei-JA-BGq" firstAttribute="top" secondItem="Fhr-86-mLz" secondAttribute="bottom" id="Scl-jk-H0t"/>
+                            <constraint firstItem="eei-JA-BGq" firstAttribute="leading" secondItem="bJ9-Ws-xUh" secondAttribute="leading" id="tjp-uc-agX"/>
+                            <constraint firstAttribute="trailing" secondItem="eei-JA-BGq" secondAttribute="trailing" id="tk1-mN-5hC"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Posts" id="icD-YH-iWh"/>
+                    <connections>
+                        <outlet property="tableView" destination="eei-JA-BGq" id="0T4-5e-km1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FLx-JG-8hB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

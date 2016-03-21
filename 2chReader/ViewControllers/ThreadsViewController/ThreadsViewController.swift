@@ -45,6 +45,12 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        let vc = segue.destinationViewController as! PostsViewController
+        vc.thread =  self.board.threads[sender!.row]
+    }
+    
     // MARK: - UITableViewDataSource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -77,7 +83,7 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: - UITableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("toPosts", sender:nil)
+        self.performSegueWithIdentifier("toPosts", sender:indexPath)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     

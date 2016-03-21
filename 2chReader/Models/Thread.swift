@@ -22,6 +22,10 @@ class Thread: Object, Mappable {
     }
     var posts = List<Post>()
     
+    var owner: BoardRealm? {
+        return linkingObjects(BoardRealm.self, forProperty: "threads").first
+    }
+    
     dynamic var postCount = 0
     
     required convenience init?(_ map: Map) {

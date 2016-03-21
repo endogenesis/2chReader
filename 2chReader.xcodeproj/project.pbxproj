@@ -26,6 +26,8 @@
 		EB9A1AF51C64DB6A00A66419 /* BoardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9A1AF21C64DB6A00A66419 /* BoardsViewController.swift */; };
 		EB9EACEF1C96BE36001D7B9E /* ThreadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9EACED1C96BE36001D7B9E /* ThreadTableViewCell.swift */; };
 		EB9EACF01C96BE36001D7B9E /* ThreadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB9EACEE1C96BE36001D7B9E /* ThreadTableViewCell.xib */; };
+		EBB78FB91C9DA24A00F0B388 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB78FB71C9DA24A00F0B388 /* PostTableViewCell.swift */; };
+		EBB78FBA1C9DA24A00F0B388 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBB78FB81C9DA24A00F0B388 /* PostTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		EB9A1AF21C64DB6A00A66419 /* BoardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardsViewController.swift; sourceTree = "<group>"; };
 		EB9EACED1C96BE36001D7B9E /* ThreadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThreadTableViewCell.swift; path = ViewControllers/ThreadsViewController/ThreadTableViewCell.swift; sourceTree = "<group>"; };
 		EB9EACEE1C96BE36001D7B9E /* ThreadTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ThreadTableViewCell.xib; path = ViewControllers/ThreadsViewController/ThreadTableViewCell.xib; sourceTree = "<group>"; };
+		EBB78FB71C9DA24A00F0B388 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		EBB78FB81C9DA24A00F0B388 /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				EB1098B21C96B0BD003A1259 /* PostsViewController.swift */,
+				EB329EC91C9D9785001FEDEC /* PostCell */,
 			);
 			name = PostsViewController;
 			sourceTree = "<group>";
@@ -107,6 +112,15 @@
 				EB9EACEE1C96BE36001D7B9E /* ThreadTableViewCell.xib */,
 			);
 			name = ThreadCell;
+			sourceTree = "<group>";
+		};
+		EB329EC91C9D9785001FEDEC /* PostCell */ = {
+			isa = PBXGroup;
+			children = (
+				EBB78FB71C9DA24A00F0B388 /* PostTableViewCell.swift */,
+				EBB78FB81C9DA24A00F0B388 /* PostTableViewCell.xib */,
+			);
+			name = PostCell;
 			sourceTree = "<group>";
 		};
 		EB9A1AB81C60BF3A00A66419 = {
@@ -250,6 +264,7 @@
 				EB9A1AF41C64DB6A00A66419 /* BoardsTableViewCell.xib in Resources */,
 				EB9A1ADA1C60D0A400A66419 /* Boards.plist in Resources */,
 				EB9EACF01C96BE36001D7B9E /* ThreadTableViewCell.xib in Resources */,
+				EBB78FBA1C9DA24A00F0B388 /* PostTableViewCell.xib in Resources */,
 				EB9A1ACC1C60BF3A00A66419 /* Assets.xcassets in Resources */,
 				EB9A1ACA1C60BF3A00A66419 /* Main.storyboard in Resources */,
 			);
@@ -312,6 +327,7 @@
 			files = (
 				EB9A1AF31C64DB6A00A66419 /* BoardsTableViewCell.swift in Sources */,
 				EB9A1AF51C64DB6A00A66419 /* BoardsViewController.swift in Sources */,
+				EBB78FB91C9DA24A00F0B388 /* PostTableViewCell.swift in Sources */,
 				EB7D359B1C91BC2A001A1ACB /* Board.swift in Sources */,
 				EB9A1AE61C624D4100A66419 /* ServerManager.swift in Sources */,
 				EB7D35961C887CD4001A1ACB /* Post.swift in Sources */,
@@ -442,6 +458,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "EN.-chReader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -457,6 +474,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "EN.-chReader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
