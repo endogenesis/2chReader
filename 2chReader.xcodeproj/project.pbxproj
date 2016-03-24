@@ -28,6 +28,7 @@
 		EB9EACF01C96BE36001D7B9E /* ThreadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB9EACEE1C96BE36001D7B9E /* ThreadTableViewCell.xib */; };
 		EBB78FB91C9DA24A00F0B388 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB78FB71C9DA24A00F0B388 /* PostTableViewCell.swift */; };
 		EBB78FBA1C9DA24A00F0B388 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBB78FB81C9DA24A00F0B388 /* PostTableViewCell.xib */; };
+		EBBC0A781CA41EBB005F0ACD /* AttributedStringBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBC0A771CA41EBB005F0ACD /* AttributedStringBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		EB9EACEE1C96BE36001D7B9E /* ThreadTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ThreadTableViewCell.xib; path = ViewControllers/ThreadsViewController/ThreadTableViewCell.xib; sourceTree = "<group>"; };
 		EBB78FB71C9DA24A00F0B388 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		EBB78FB81C9DA24A00F0B388 /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
+		EBBC0A771CA41EBB005F0ACD /* AttributedStringBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedStringBuilder.swift; path = Utils/AttributedStringBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				EB9A1AC41C60BF3A00A66419 /* AppDelegate.swift */,
 				EB9A1AE91C624D9E00A66419 /* Models */,
 				EB9A1AD81C60C31900A66419 /* ViewControllers */,
+				EBBC0A791CA41EC3005F0ACD /* Utils */,
 				EB9A1AC81C60BF3A00A66419 /* Main.storyboard */,
 				EB9A1ACB1C60BF3A00A66419 /* Assets.xcassets */,
 				EB9A1ACD1C60BF3A00A66419 /* LaunchScreen.storyboard */,
@@ -196,6 +199,14 @@
 				EB329EC21C9D8DC1001FEDEC /* ThreadCell */,
 			);
 			name = ThreadsViewController;
+			sourceTree = "<group>";
+		};
+		EBBC0A791CA41EC3005F0ACD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				EBBC0A771CA41EBB005F0ACD /* AttributedStringBuilder.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,6 +346,7 @@
 				EB7D35971C887CD4001A1ACB /* RealmListTransform.swift in Sources */,
 				EB9A1AC51C60BF3A00A66419 /* AppDelegate.swift in Sources */,
 				EB7D35931C887CBB001A1ACB /* ThreadsViewController.swift in Sources */,
+				EBBC0A781CA41EBB005F0ACD /* AttributedStringBuilder.swift in Sources */,
 				EB7D35991C887DA2001A1ACB /* Thread.swift in Sources */,
 				EB9A1AE31C60E9C500A66419 /* ResourceManager.swift in Sources */,
 				EB9EACEF1C96BE36001D7B9E /* ThreadTableViewCell.swift in Sources */,

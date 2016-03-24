@@ -15,6 +15,7 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     
     var thread: Thread = Thread()
+    let attrStrBuilder: AttibutedStringBuilder = AttibutedStringBuilder()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,8 +59,9 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         let cell = tableView.dequeueReusableCellWithIdentifier(PostTableViewCell.identifier(), forIndexPath: indexPath) as! PostTableViewCell
         
         let post = self.thread.posts[indexPath.row]
-        
-        cell.labelComment.text = post.comment
+        if let comment = post.comment {
+         cell.labelComment.attributedText = self.attrStrBuilder.attributedString(comment)
+        }
         
         let fileModel = post.files.first
         if let fileModel = fileModel {
@@ -74,6 +76,5 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100;
     }
-    
     
 }
