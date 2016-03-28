@@ -30,7 +30,7 @@ class ThreadTableViewCell: UITableViewCell {
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
-        //super.setSelected(selected, animated: animated)
+        super.setSelected(selected, animated: animated)
     }
     
     override func prepareForReuse() {

@@ -12,7 +12,12 @@ import RealmSwift
 
 class Thread: Object, Mappable {
     
-    dynamic var threadNum: String?
+    dynamic var threadNum: String = ""
+    
+    var posts = List<Post>()
+    
+    dynamic var postCount = 0
+    
     var subject: String? {
         let firstPostInThread = posts.first
         if (firstPostInThread?.subject == "") {
@@ -20,13 +25,10 @@ class Thread: Object, Mappable {
         }
         return firstPostInThread?.subject
     }
-    var posts = List<Post>()
     
-    var owner: BoardRealm? {
-        return linkingObjects(BoardRealm.self, forProperty: "threads").first
+    var owner: BoardRealm {
+        return linkingObjects(BoardRealm.self, forProperty: "threads").first!
     }
-    
-    dynamic var postCount = 0
     
     required convenience init?(_ map: Map) {
         self.init()

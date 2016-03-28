@@ -15,7 +15,11 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     
     var thread: Thread = Thread()
+    var board: BoardRealm = BoardRealm()
+    
     let attrStrBuilder: AttibutedStringBuilder = AttibutedStringBuilder()
+    
+    let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,21 +30,21 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     override func viewWillAppear(animated: Bool) {
-        let realm = try! Realm()
-        try! realm.write {
-            realm.delete(self.thread.posts)
-        }
-        
-        ServerManager.sharedInstance.loadThreadWithPosts((self.thread.owner?.id)!, threadNum: self.thread.threadNum!) { (posts) -> Void in
+        ServerManager.sharedInstance.loadPosts(self.board.id, threadNum: self.thread.threadNum, fromPost: self.thread.posts.count ) { (posts) -> Void in
             if let posts = posts {
-                try! realm.write {
-                    self.thread.posts.appendContentsOf(posts)
-                    realm.add(self.thread, update: true)
-                }
+                self.savePostsToRealm(posts)
             }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
             })
+        }
+    }
+    
+    // MARK: - Realm
+    func savePostsToRealm(posts: [Post]) {
+        try! self.realm.write {
+            self.thread.posts.appendContentsOf(posts)
+            self.realm.add(posts, update: true)
         }
     }
     
@@ -65,7 +69,7 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let fileModel = post.files.first
         if let fileModel = fileModel {
-            let imageUrl = NSURL(string: ServerManager.sharedInstance.urlForImage(self.thread.owner!.id!, path: fileModel.thumbPath!))
+            let imageUrl = NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: fileModel.thumbPath!))
             cell.postImage?.af_setImageWithURL(imageUrl!)
         }
         return cell
@@ -76,5 +80,4 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100;
     }
-    
 }

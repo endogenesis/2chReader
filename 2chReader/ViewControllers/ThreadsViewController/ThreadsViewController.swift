@@ -14,8 +14,9 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBOutlet weak var tableView: UITableView!
     
-    var currentBoard: String = ""
+    var currentBoardID: String = ""
     var board: BoardRealm = BoardRealm()
+    let realm = try! Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,18 +26,13 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewWillAppear(animated: Bool) {
-        let realm = try! Realm()
-        let boardFromRealm = realm.objectForPrimaryKey(BoardRealm.self, key: self.currentBoard)
-        if let boardFromRealm = boardFromRealm {
-            self.board = boardFromRealm
-        }
         
-        ServerManager.sharedInstance.boardWithThreads(self.currentBoard, page: 0) { (board) -> Void in
+        self.loadBoardFromRealm()
+        
+        ServerManager.sharedInstance.boardWithThreads(self.currentBoardID, page: 0) { (board) -> Void in
             if let board = board {
                 self.board = board
-                try! realm.write {
-                    realm.add(self.board, update:true)
-                }
+                self.saveBoardToRealm(board)
             }
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -49,6 +45,22 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
         super.prepareForSegue(segue, sender: sender)
         let vc = segue.destinationViewController as! PostsViewController
         vc.thread =  self.board.threads[sender!.row]
+        vc.board = self.board
+    }
+    
+    // MARK: - Realm
+    
+    func loadBoardFromRealm() {
+        let boardFromRealm = realm.objectForPrimaryKey(BoardRealm.self, key: self.currentBoardID)
+        if let boardFromRealm = boardFromRealm {
+            self.board = boardFromRealm
+        }
+    }
+    
+    func saveBoardToRealm(board: BoardRealm) {
+        try! self.realm.write {
+            self.realm.add(self.board, update:true)
+        }
     }
     
     // MARK: - UITableViewDataSource
@@ -72,8 +84,7 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.threadFirstPostLabel.text = firstPost.comment
             let fileModel = firstPost.files.first
             if let fileModel = fileModel {
-                let imageUrl = NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id!, path: fileModel.thumbPath!))
-                
+                let imageUrl = NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: fileModel.thumbPath!))
                 cell.threadImage?.af_setImageWithURL(imageUrl!)
             }
         }

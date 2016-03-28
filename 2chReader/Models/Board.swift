@@ -12,7 +12,7 @@ import RealmSwift
 
 class BoardRealm: Object, Mappable {
     
-    dynamic var id: String?
+    dynamic var id: String = "no id"
     var threads = List<Thread>()
     
     required convenience init?(_ map: Map) {

@@ -76,7 +76,7 @@ class BoardsViewController: UIViewController, UITableViewDataSource, UITableView
             let index = sender as! NSIndexPath
             let board = self.boards[index.section][index.row]
             vc.navigationItem.title = board.name
-            vc.currentBoard = board.id
+            vc.currentBoardID = board.id
         }
     }
 }
