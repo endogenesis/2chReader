@@ -13,11 +13,9 @@ let defaultFontSize: CGFloat = 17
 
 let boldFont = UIFont.boldSystemFontOfSize(defaultFontSize)
 let boldAttributes = [NSFontAttributeName : boldFont]
-let boldTag = (regExp:"<strong>.*?</strong>", attributes: boldAttributes)
 
 let italicFont = UIFont.italicSystemFontOfSize(defaultFontSize)
 let italicAttributes = [NSFontAttributeName : italicFont]
-let italicTag = (regExp:"<em>.*?</em>", attributes: italicAttributes)
 
 struct TagToProcess {
     let regExp: String
@@ -26,17 +24,17 @@ struct TagToProcess {
     let closedLength: Int
 }
 
-let boldTag1 = TagToProcess(regExp: "<strong>.*?</strong>", attributes: boldAttributes, openLength: 8, closedLength: 9)
-let italicTag1 = TagToProcess(regExp: "<em>.*?</em>", attributes: italicAttributes, openLength: 4, closedLength: 5)
+let boldTag = TagToProcess(regExp: "<strong>[\\s\\S]*?</strong>", attributes: boldAttributes, openLength: 8, closedLength: 9)
+let italicTag = TagToProcess(regExp: "<em>[\\s\\S]*?</em>", attributes: italicAttributes, openLength: 4, closedLength: 5)
 
 
-class AttibutedStringBuilder {
+class AttributedStringBuilder {
     
-    let tagsToProcess = [boldTag1, italicTag1]
+    let tagsToProcess = [boldTag, italicTag]
     
     func attributedString(stringWithTags: String) -> NSAttributedString? {
         
-        let attrStr = NSMutableAttributedString(string: stringWithTags)
+        let attrStr = NSMutableAttributedString(string: self.processBRTag(stringWithTags))
         
         for tag in self.tagsToProcess {
             var rangeOfSearchText = self.findTextWithTag(tag.regExp, str: attrStr.mutableString as String)
@@ -46,10 +44,13 @@ class AttibutedStringBuilder {
                 rangeOfSearchText = self.findTextWithTag(tag.regExp, str: attrStr.mutableString as String)
             }
         }
+        
         return attrStr
     }
     
-    func findTextWithTag(regExp: String, str: String) -> NSRange {
+    // MARK: Utils
+    
+    private func findTextWithTag(regExp: String, str: String) -> NSRange {
         
         let regex = try! NSRegularExpression(pattern: regExp, options: .CaseInsensitive)
         
@@ -62,7 +63,7 @@ class AttibutedStringBuilder {
         }
     }
     
-    func removeTagsFromString(str: NSMutableString, inout range: NSRange, open: Int, closed: Int) -> NSRange {
+    private func removeTagsFromString(str: NSMutableString, inout range: NSRange, open: Int, closed: Int) -> NSRange {
         
         let openTagRange = NSRange(location: range.location, length: open)
         str.deleteCharactersInRange(openTagRange)
@@ -72,5 +73,9 @@ class AttibutedStringBuilder {
         str.deleteCharactersInRange(closedTagRange)
         range.length -= closed
         return range
+    }
+    
+    private func processBRTag(string: String) -> String {
+         return string.stringByReplacingOccurrencesOfString("<br>", withString: "\n")
     }
 }

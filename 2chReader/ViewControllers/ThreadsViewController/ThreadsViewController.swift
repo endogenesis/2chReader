@@ -16,7 +16,9 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var currentBoardID: String = ""
     var board: BoardRealm = BoardRealm()
+    
     let realm = try! Realm()
+    let attrStingBuilder = AttributedStringBuilder()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +34,6 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
         ServerManager.sharedInstance.boardWithThreads(self.currentBoardID, page: 0) { (board) -> Void in
             if let board = board {
                 self.board = board
-                
                 self.deleteLast3PostsInLoadedThreads()
                 self.saveBoardToRealm(board)
             }
@@ -100,7 +101,7 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.threadNameLabel.text = thread.subject
         let firstPost = thread.posts.first
         if let firstPost = firstPost {
-            cell.threadFirstPostLabel.text = firstPost.comment
+            cell.threadFirstPostLabel.attributedText = self.attrStingBuilder.attributedString(firstPost.comment!)
             let fileModel = firstPost.files.first
             if let fileModel = fileModel {
                 let imageUrl = NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: fileModel.thumbPath!))
