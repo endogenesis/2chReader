@@ -43,6 +43,8 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     // MARK: - Realm
     func savePostsToRealm(posts: [Post]) {
         try! self.realm.write {
+            
+            //TODO need check posts on uniq num
             self.thread.posts.appendContentsOf(posts)
             self.realm.add(posts, update: true)
         }

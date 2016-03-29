@@ -42,7 +42,7 @@ class ServerManager: NSObject {
     
     func loadPosts(boardID: String, threadNum: String, fromPost: Int, callback:([Post]? -> Void)) {
         
-        let urlString = self.urlGetPosts(boardID, thread: threadNum, postThreadNumber: fromPost)
+        let urlString = self.urlGetPosts(boardID, thread: threadNum, postThreadNumber: fromPost + 1)
         
         Alamofire.request(.GET, urlString).validate().responseArray { (response: Response<[Post], NSError>) -> Void in
             switch response.result {

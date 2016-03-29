@@ -32,6 +32,8 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
         ServerManager.sharedInstance.boardWithThreads(self.currentBoardID, page: 0) { (board) -> Void in
             if let board = board {
                 self.board = board
+                
+                self.deleteLast3PostsInLoadedThreads()
                 self.saveBoardToRealm(board)
             }
             
@@ -59,7 +61,24 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func saveBoardToRealm(board: BoardRealm) {
         try! self.realm.write {
+            for thread in board.threads {
+                let threadInRealm = self.realm.objectForPrimaryKey(Thread.self, key: thread.threadNum)
+                if let threadInRealm = threadInRealm {
+                    if threadInRealm.posts.count > thread.posts.count {
+                        thread.posts = threadInRealm.posts
+                    }
+                }
+            }
             self.realm.add(self.board, update:true)
+        }
+    }
+    
+    func deleteLast3PostsInLoadedThreads() {
+        for thread in self.board.threads {
+            if thread.posts.count > 1 {
+                let rangeToDelete = 1..<thread.posts.count
+                thread.posts.removeRange(rangeToDelete)
+            }
         }
     }
     
