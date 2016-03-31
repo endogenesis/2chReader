@@ -17,24 +17,35 @@ let boldAttributes = [NSFontAttributeName : boldFont]
 let italicFont = UIFont.italicSystemFontOfSize(defaultFontSize)
 let italicAttributes = [NSFontAttributeName : italicFont]
 
+let linkAttributes  = [NSForegroundColorAttributeName : UIColor.orangeColor()]
+
+let underlineAttributes = [NSUnderlineStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue]
+
+let strikeAttribures = [NSStrikethroughStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
+
 struct TagToProcess {
     let regExp: String
-    let attributes: [String : UIFont]
+    let attributes: [String : AnyObject]
     let openLength: Int
     let closedLength: Int
 }
 
 let boldTag = TagToProcess(regExp: "<strong>[\\s\\S]*?</strong>", attributes: boldAttributes, openLength: 8, closedLength: 9)
 let italicTag = TagToProcess(regExp: "<em>[\\s\\S]*?</em>", attributes: italicAttributes, openLength: 4, closedLength: 5)
+let linkTag = TagToProcess(regExp: "<a[^>]*>[\\s\\S]*?</a>", attributes: linkAttributes, openLength: 3, closedLength: 4)
+let underlineTag = TagToProcess(regExp: "<span class=\"u\">(.*?)</span>", attributes: underlineAttributes, openLength: 5, closedLength: 7)
+let strikeTag = TagToProcess(regExp: "<span class=\"s\">(.*?)</span>", attributes: strikeAttribures, openLength: 7, closedLength: 5)
+
+// spoiler and quote are coming
 
 
 class AttributedStringBuilder {
     
-    let tagsToProcess = [boldTag, italicTag]
+    let tagsToProcess = [boldTag, italicTag, linkTag, underlineTag, strikeTag]
     
     func attributedString(stringWithTags: String) -> NSAttributedString? {
         
-        let attrStr = NSMutableAttributedString(string: self.processBRTag(stringWithTags))
+        let attrStr = NSMutableAttributedString(string: self.replaceSymbols(stringWithTags))
         
         for tag in self.tagsToProcess {
             var rangeOfSearchText = self.findTextWithTag(tag.regExp, str: attrStr.mutableString as String)
@@ -44,7 +55,6 @@ class AttributedStringBuilder {
                 rangeOfSearchText = self.findTextWithTag(tag.regExp, str: attrStr.mutableString as String)
             }
         }
-        
         return attrStr
     }
     
@@ -75,7 +85,11 @@ class AttributedStringBuilder {
         return range
     }
     
-    private func processBRTag(string: String) -> String {
-         return string.stringByReplacingOccurrencesOfString("<br>", withString: "\n")
+    private func replaceSymbols(string: String) -> String {
+        var returnStr = string.stringByReplacingOccurrencesOfString("&#39;", withString: "'")
+        returnStr = returnStr.stringByReplacingOccurrencesOfString("&#44;", withString: ",")
+        returnStr = returnStr.stringByReplacingOccurrencesOfString("&#47;", withString: "/")
+        returnStr = returnStr.stringByReplacingOccurrencesOfString("&#92;", withString: "\\")
+         return returnStr.stringByReplacingOccurrencesOfString("<br>", withString: "\n")
     }
 }
