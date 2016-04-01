@@ -101,7 +101,7 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.threadNameLabel.text = thread.subject
         let firstPost = thread.posts.first
         if let firstPost = firstPost {
-            cell.threadFirstPostLabel.attributedText = self.attrStingBuilder.attributedString(firstPost.comment!)
+            cell.threadFirstPost.attributedText = self.attrStingBuilder.attributedString(firstPost.comment!)
             let fileModel = firstPost.files.first
             if let fileModel = fileModel {
                 let imageUrl = NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: fileModel.thumbPath!))

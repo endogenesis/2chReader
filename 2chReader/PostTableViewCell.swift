@@ -11,12 +11,13 @@ import UIKit
 class PostTableViewCell: UITableViewCell {
 
     @IBOutlet weak var postImage: UIImageView!
-    @IBOutlet weak var labelComment: UILabel!
+    @IBOutlet weak var postTextView: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.postImage.contentMode = UIViewContentMode.ScaleAspectFit
         self.postImage.clipsToBounds = true
+        self.postTextView.linkTextAttributes = [NSForegroundColorAttributeName : UIColor.orangeColor()]
     }
     
     override func prepareForReuse() {

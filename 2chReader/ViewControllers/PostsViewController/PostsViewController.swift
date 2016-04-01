@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import AlamofireImage
 
-class PostsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class PostsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -65,7 +65,15 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let post = self.thread.posts[indexPath.row]
         if let comment = post.comment {
-         cell.labelComment.attributedText = self.attrStrBuilder.attributedString(comment)
+            cell.postTextView.attributedText = self.attrStrBuilder.attributedString(comment)
+            cell.postTextView.delegate = self
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+//                let attrStr = self.attrStrBuilder.attributedString(comment)
+//                
+//                dispatch_async(dispatch_get_main_queue(), { 
+//                    cell.postTextView.attributedText = attrStr
+//                })
+//            })
         }
         
         let fileModel = post.files.first
@@ -73,12 +81,20 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
             let imageUrl = NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: fileModel.thumbPath!))
             cell.postImage?.af_setImageWithURL(imageUrl!)
         }
+        
         return cell
     }
+    
     
     // MARK: - UITableViewDelegate
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100;
+    }
+    
+    // MARK: - UITextViewDelegate
+    
+    func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
+        return false
     }
 }

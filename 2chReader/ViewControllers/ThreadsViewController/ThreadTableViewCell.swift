@@ -13,7 +13,8 @@ class ThreadTableViewCell: UITableViewCell {
     @IBOutlet weak var threadImage: UIImageView!
     
     @IBOutlet weak var threadNameLabel: UILabel!
-    @IBOutlet weak var threadFirstPostLabel: UILabel!
+    
+    @IBOutlet weak var threadFirstPost: UITextView!
     
     class func identifier() -> String {
         return "ThreadTableViewCellId"
@@ -27,6 +28,7 @@ class ThreadTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.threadImage.contentMode = UIViewContentMode.ScaleAspectFit
         self.threadImage.clipsToBounds = true
+        self.threadFirstPost.linkTextAttributes = [NSForegroundColorAttributeName : UIColor.orangeColor()]
     }
     
     override func setSelected(selected: Bool, animated: Bool) {

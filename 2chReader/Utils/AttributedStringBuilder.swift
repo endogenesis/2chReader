@@ -17,7 +17,7 @@ let boldAttributes = [NSFontAttributeName : boldFont]
 let italicFont = UIFont.italicSystemFontOfSize(defaultFontSize)
 let italicAttributes = [NSFontAttributeName : italicFont]
 
-let linkAttributes  = [NSForegroundColorAttributeName : UIColor.orangeColor()]
+let linkAttributesURL  = [NSLinkAttributeName : "http://www.google.com" ]
 
 let underlineAttributes = [NSUnderlineStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue]
 
@@ -25,16 +25,16 @@ let strikeAttribures = [NSStrikethroughStyleAttributeName: NSUnderlineStyle.Styl
 
 struct TagToProcess {
     let regExp: String
-    let attributes: [String : AnyObject]
+    let attributes: [[String : AnyObject]]
     let openLength: Int
     let closedLength: Int
 }
 
-let boldTag = TagToProcess(regExp: "<strong>[\\s\\S]*?</strong>", attributes: boldAttributes, openLength: 8, closedLength: 9)
-let italicTag = TagToProcess(regExp: "<em>[\\s\\S]*?</em>", attributes: italicAttributes, openLength: 4, closedLength: 5)
-let linkTag = TagToProcess(regExp: "<a[^>]*>[\\s\\S]*?</a>", attributes: linkAttributes, openLength: 3, closedLength: 4)
-let underlineTag = TagToProcess(regExp: "<span class=\"u\">(.*?)</span>", attributes: underlineAttributes, openLength: 5, closedLength: 7)
-let strikeTag = TagToProcess(regExp: "<span class=\"s\">(.*?)</span>", attributes: strikeAttribures, openLength: 7, closedLength: 5)
+let boldTag = TagToProcess(regExp: "<strong>[\\s\\S]*?</strong>", attributes: [boldAttributes], openLength: 8, closedLength: 9)
+let italicTag = TagToProcess(regExp: "<em>[\\s\\S]*?</em>", attributes: [italicAttributes], openLength: 4, closedLength: 5)
+let linkTag = TagToProcess(regExp: "<a[^>]*>[\\s\\S]*?</a>", attributes: [linkAttributesURL], openLength: 3, closedLength: 4)
+let underlineTag = TagToProcess(regExp: "<span class=\"u\">(.*?)</span>", attributes: [underlineAttributes], openLength: 5, closedLength: 7)
+let strikeTag = TagToProcess(regExp: "<span class=\"s\">(.*?)</span>", attributes: [strikeAttribures], openLength: 7, closedLength: 5)
 
 // spoiler and quote are coming
 
@@ -51,11 +51,23 @@ class AttributedStringBuilder {
             var rangeOfSearchText = self.findTextWithTag(tag.regExp, str: attrStr.mutableString as String)
             while rangeOfSearchText.length != 0 {
                 let rangeWithoutTags = self.removeTagsFromString(attrStr.mutableString, range: &rangeOfSearchText, open: tag.openLength, closed: tag.closedLength)
-                attrStr.addAttributes(tag.attributes, range: rangeWithoutTags)
+                for attributes in tag.attributes {
+                    attrStr.addAttributes(attributes, range: rangeWithoutTags)
+                }
                 rangeOfSearchText = self.findTextWithTag(tag.regExp, str: attrStr.mutableString as String)
             }
         }
         return attrStr
+    }
+    
+    // MARK: -
+    
+    private func replaceSymbols(string: String) -> String {
+        var returnStr = string.stringByReplacingOccurrencesOfString("&#39;", withString: "'")
+        returnStr = returnStr.stringByReplacingOccurrencesOfString("&#44;", withString: ",")
+        returnStr = returnStr.stringByReplacingOccurrencesOfString("&#47;", withString: "/")
+        returnStr = returnStr.stringByReplacingOccurrencesOfString("&#92;", withString: "\\")
+        return returnStr.stringByReplacingOccurrencesOfString("<br>", withString: "\n")
     }
     
     // MARK: Utils
@@ -83,13 +95,5 @@ class AttributedStringBuilder {
         str.deleteCharactersInRange(closedTagRange)
         range.length -= closed
         return range
-    }
-    
-    private func replaceSymbols(string: String) -> String {
-        var returnStr = string.stringByReplacingOccurrencesOfString("&#39;", withString: "'")
-        returnStr = returnStr.stringByReplacingOccurrencesOfString("&#44;", withString: ",")
-        returnStr = returnStr.stringByReplacingOccurrencesOfString("&#47;", withString: "/")
-        returnStr = returnStr.stringByReplacingOccurrencesOfString("&#92;", withString: "\\")
-         return returnStr.stringByReplacingOccurrencesOfString("<br>", withString: "\n")
     }
 }
