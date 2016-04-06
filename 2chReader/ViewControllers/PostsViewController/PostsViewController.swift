@@ -16,6 +16,7 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     var thread: Thread = Thread()
     var board: BoardRealm = BoardRealm()
+    var pushedPosts: Array<UIView> = Array()
     
     let attrStrBuilder = AttributedStringBuilder()
     
@@ -27,6 +28,9 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.tableView.registerNib(PostTableViewCell.nibPostTableViewCell(), forCellReuseIdentifier: PostTableViewCell.identifier())
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.navigationItem.title = self.thread.subject
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(PostsViewController.onTapEvent))
+        self.view.addGestureRecognizer(tapRecognizer)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -63,19 +67,13 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let cell = tableView.dequeueReusableCellWithIdentifier(PostTableViewCell.identifier(), forIndexPath: indexPath) as! PostTableViewCell
         
-        cell.quotesTextView.text = ">>14124124, >>124124124, >>124124124, >>124124124"
+        cell.quotesTextView.attributedText = self.attrStrBuilder.attributedString("<a>test</a>")
+        cell.quotesTextView.delegate = self
         
         let post = self.thread.posts[indexPath.row]
         if let comment = post.comment {
             cell.postTextView.attributedText = self.attrStrBuilder.attributedString(comment)
             cell.postTextView.delegate = self
-//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-//                let attrStr = self.attrStrBuilder.attributedString(comment)
-//                
-//                dispatch_async(dispatch_get_main_queue(), { 
-//                    cell.postTextView.attributedText = attrStr
-//                })
-//            })
         }
         
         let fileModel = post.files.first
@@ -87,7 +85,6 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
     
-    
     // MARK: - UITableViewDelegate
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -97,6 +94,58 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     // MARK: - UITextViewDelegate
     
     func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
+        // 1) get Post
+        let post = Post()
+      //  post.comment = "asdasfgesfaesdfasffgasdfge111111"
+        self.pushPostOnScreen(post)
         return false
+    }
+    
+    func pushPostOnScreen(post: Post) {
+        let cell = NSBundle.mainBundle().loadNibNamed("PostTableViewCell", owner: nil, options: nil)[0] as! PostTableViewCell
+        if let comment = post.comment {
+            cell.postTextView.attributedText = self.attrStrBuilder.attributedString(comment)
+            cell.postTextView.delegate = self
+        }
+        
+        let fileModel = post.files.first
+        if let fileModel = fileModel {
+            let imageUrl = NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: fileModel.thumbPath!))
+            cell.postImage?.af_setImageWithURL(imageUrl!)
+        }
+        self.view.addSubview(cell)
+        self.pushedPosts.append(cell)
+        self.setFrameForPushedPost(cell)
+        
+        cell.backgroundColor = UIColor.greenColor()
+    }
+    
+    func popPostFromScreen() {
+        let postOnScreen = self.pushedPosts.last
+        if let postOnScreen = postOnScreen {
+            postOnScreen.removeFromSuperview()
+            self.pushedPosts.removeLast()
+        }
+    }
+    
+    func onTapEvent() {
+        self.popPostFromScreen()
+    }
+    
+    override func viewWillLayoutSubviews() {
+         super.viewWillLayoutSubviews()
+        
+        for view in self.pushedPosts {
+            self.setFrameForPushedPost(view)
+        }
+    }
+    func setFrameForPushedPost(view: UIView) {
+        var fittingSize = UILayoutFittingCompressedSize
+        fittingSize.width = CGRectGetWidth(self.view.frame)
+        view.frame.size = view.systemLayoutSizeFittingSize(fittingSize, withHorizontalFittingPriority: UILayoutPriorityRequired, verticalFittingPriority: UILayoutPriorityDefaultHigh)
+        let dy = self.pushedPosts.indexOf(view)! * 10
+        var centerPost = self.view.center
+        centerPost.y += CGFloat(dy)
+        view.center = centerPost
     }
 }
