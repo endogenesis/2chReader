@@ -1,18 +1,62 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="PostTableViewCell" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="KGk-i7-Jjw" customClass="PostTableViewCell" customModule="_chReader" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="108"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="107"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VfM-pM-ygF">
+                        <rect key="frame" x="8" y="8" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="1RD-ZK-8Pb"/>
+                            <constraint firstAttribute="width" constant="80" id="GMp-wg-Rkk"/>
+                        </constraints>
+                    </imageView>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="254" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gkA-is-IsB">
+                        <rect key="frame" x="96" y="8" width="216" height="80"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="999" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bPA-3f-Oe5" userLabel="Quotes Text View">
+                        <rect key="frame" x="8" y="96" width="304" height="3"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="3" id="SJi-5f-xNS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="bPA-3f-Oe5" secondAttribute="bottom" constant="8" id="15f-6U-3EC"/>
+                    <constraint firstItem="bPA-3f-Oe5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="VfM-pM-ygF" secondAttribute="bottom" constant="8" id="7LI-k5-xfO"/>
+                    <constraint firstItem="bPA-3f-Oe5" firstAttribute="top" secondItem="gkA-is-IsB" secondAttribute="bottom" constant="8" id="HUj-5e-qoc"/>
+                    <constraint firstItem="gkA-is-IsB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="MPZ-wO-qrO"/>
+                    <constraint firstItem="VfM-pM-ygF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="SCb-QL-iG9"/>
+                    <constraint firstAttribute="trailing" secondItem="bPA-3f-Oe5" secondAttribute="trailing" constant="8" id="TVN-Nx-wCC"/>
+                    <constraint firstItem="bPA-3f-Oe5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="fkz-9K-W74"/>
+                    <constraint firstAttribute="trailing" secondItem="gkA-is-IsB" secondAttribute="trailing" constant="8" id="gCj-sC-VZv"/>
+                    <constraint firstItem="VfM-pM-ygF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="izS-rI-O3b"/>
+                    <constraint firstItem="gkA-is-IsB" firstAttribute="leading" secondItem="VfM-pM-ygF" secondAttribute="trailing" constant="8" id="qaB-9N-oee"/>
+                </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="heightConstraint" destination="SJi-5f-xNS" id="ZP8-LH-27H"/>
+                <outlet property="postImage" destination="VfM-pM-ygF" id="Ddp-Pm-mhS"/>
+                <outlet property="postTextView" destination="gkA-is-IsB" id="WTV-4d-HqN"/>
+                <outlet property="quotesTextView" destination="bPA-3f-Oe5" id="CKS-wK-mrF"/>
+            </connections>
+            <point key="canvasLocation" x="218" y="347"/>
         </tableViewCell>
     </objects>
 </document>

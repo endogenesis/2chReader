@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		254C92B28AD0DEBDF47ADD55 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A87BBCA02D5E8843B5AD0FF /* Pods.framework */; };
 		EB1098B31C96B0BD003A1259 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1098B21C96B0BD003A1259 /* PostsViewController.swift */; };
+		EB52E6FB1CB5070300259528 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB52E6F91CB5070300259528 /* PostTableViewCell.swift */; };
+		EB52E6FC1CB5070300259528 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB52E6FA1CB5070300259528 /* PostTableViewCell.xib */; };
 		EB7D35931C887CBB001A1ACB /* ThreadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7D35921C887CBB001A1ACB /* ThreadsViewController.swift */; };
 		EB7D35961C887CD4001A1ACB /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7D35941C887CD4001A1ACB /* Post.swift */; };
 		EB7D35971C887CD4001A1ACB /* RealmListTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7D35951C887CD4001A1ACB /* RealmListTransform.swift */; };
@@ -26,8 +28,6 @@
 		EB9A1AF51C64DB6A00A66419 /* BoardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9A1AF21C64DB6A00A66419 /* BoardsViewController.swift */; };
 		EB9EACEF1C96BE36001D7B9E /* ThreadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9EACED1C96BE36001D7B9E /* ThreadTableViewCell.swift */; };
 		EB9EACF01C96BE36001D7B9E /* ThreadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB9EACEE1C96BE36001D7B9E /* ThreadTableViewCell.xib */; };
-		EBB78FB91C9DA24A00F0B388 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB78FB71C9DA24A00F0B388 /* PostTableViewCell.swift */; };
-		EBB78FBA1C9DA24A00F0B388 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBB78FB81C9DA24A00F0B388 /* PostTableViewCell.xib */; };
 		EBBC0A781CA41EBB005F0ACD /* AttributedStringBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBC0A771CA41EBB005F0ACD /* AttributedStringBuilder.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +36,8 @@
 		538220ECE339E90389DDD9A5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		89E6A3E487372A8FF0E4F321 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EB1098B21C96B0BD003A1259 /* PostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostsViewController.swift; path = ViewControllers/PostsViewController/PostsViewController.swift; sourceTree = "<group>"; };
+		EB52E6F91CB5070300259528 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostTableViewCell.swift; path = ViewControllers/PostsViewController/PostTableViewCell.swift; sourceTree = "<group>"; };
+		EB52E6FA1CB5070300259528 /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostTableViewCell.xib; path = ViewControllers/PostsViewController/PostTableViewCell.xib; sourceTree = "<group>"; };
 		EB7D35921C887CBB001A1ACB /* ThreadsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThreadsViewController.swift; path = ViewControllers/ThreadsViewController/ThreadsViewController.swift; sourceTree = "<group>"; };
 		EB7D35941C887CD4001A1ACB /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Post.swift; path = Models/Post.swift; sourceTree = "<group>"; };
 		EB7D35951C887CD4001A1ACB /* RealmListTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmListTransform.swift; path = Models/RealmListTransform.swift; sourceTree = "<group>"; };
@@ -55,8 +57,6 @@
 		EB9A1AF21C64DB6A00A66419 /* BoardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardsViewController.swift; sourceTree = "<group>"; };
 		EB9EACED1C96BE36001D7B9E /* ThreadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThreadTableViewCell.swift; path = ViewControllers/ThreadsViewController/ThreadTableViewCell.swift; sourceTree = "<group>"; };
 		EB9EACEE1C96BE36001D7B9E /* ThreadTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ThreadTableViewCell.xib; path = ViewControllers/ThreadsViewController/ThreadTableViewCell.xib; sourceTree = "<group>"; };
-		EBB78FB71C9DA24A00F0B388 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
-		EBB78FB81C9DA24A00F0B388 /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		EBBC0A771CA41EBB005F0ACD /* AttributedStringBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedStringBuilder.swift; path = Utils/AttributedStringBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,8 +119,8 @@
 		EB329EC91C9D9785001FEDEC /* PostCell */ = {
 			isa = PBXGroup;
 			children = (
-				EBB78FB71C9DA24A00F0B388 /* PostTableViewCell.swift */,
-				EBB78FB81C9DA24A00F0B388 /* PostTableViewCell.xib */,
+				EB52E6F91CB5070300259528 /* PostTableViewCell.swift */,
+				EB52E6FA1CB5070300259528 /* PostTableViewCell.xib */,
 			);
 			name = PostCell;
 			sourceTree = "<group>";
@@ -275,7 +275,7 @@
 				EB9A1AF41C64DB6A00A66419 /* BoardsTableViewCell.xib in Resources */,
 				EB9A1ADA1C60D0A400A66419 /* Boards.plist in Resources */,
 				EB9EACF01C96BE36001D7B9E /* ThreadTableViewCell.xib in Resources */,
-				EBB78FBA1C9DA24A00F0B388 /* PostTableViewCell.xib in Resources */,
+				EB52E6FC1CB5070300259528 /* PostTableViewCell.xib in Resources */,
 				EB9A1ACC1C60BF3A00A66419 /* Assets.xcassets in Resources */,
 				EB9A1ACA1C60BF3A00A66419 /* Main.storyboard in Resources */,
 			);
@@ -338,12 +338,12 @@
 			files = (
 				EB9A1AF31C64DB6A00A66419 /* BoardsTableViewCell.swift in Sources */,
 				EB9A1AF51C64DB6A00A66419 /* BoardsViewController.swift in Sources */,
-				EBB78FB91C9DA24A00F0B388 /* PostTableViewCell.swift in Sources */,
 				EB7D359B1C91BC2A001A1ACB /* Board.swift in Sources */,
 				EB9A1AE61C624D4100A66419 /* ServerManager.swift in Sources */,
 				EB7D35961C887CD4001A1ACB /* Post.swift in Sources */,
 				EB1098B31C96B0BD003A1259 /* PostsViewController.swift in Sources */,
 				EB7D35971C887CD4001A1ACB /* RealmListTransform.swift in Sources */,
+				EB52E6FB1CB5070300259528 /* PostTableViewCell.swift in Sources */,
 				EB9A1AC51C60BF3A00A66419 /* AppDelegate.swift in Sources */,
 				EB7D35931C887CBB001A1ACB /* ThreadsViewController.swift in Sources */,
 				EBBC0A781CA41EBB005F0ACD /* AttributedStringBuilder.swift in Sources */,
