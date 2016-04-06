@@ -63,6 +63,8 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let cell = tableView.dequeueReusableCellWithIdentifier(PostTableViewCell.identifier(), forIndexPath: indexPath) as! PostTableViewCell
         
+        cell.quotesTextView.text = ">>14124124, >>124124124, >>124124124, >>124124124"
+        
         let post = self.thread.posts[indexPath.row]
         if let comment = post.comment {
             cell.postTextView.attributedText = self.attrStrBuilder.attributedString(comment)

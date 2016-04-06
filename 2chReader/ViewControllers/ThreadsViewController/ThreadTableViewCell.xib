@@ -33,7 +33,7 @@
                         <rect key="frame" x="96" y="16" width="216" height="33"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="1000" id="81x-Im-PQf"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="300" id="81x-Im-PQf"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
