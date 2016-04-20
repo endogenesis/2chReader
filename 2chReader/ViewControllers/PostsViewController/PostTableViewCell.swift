@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import AlamofireImage
 
-class PostTableViewCell: UITableViewCell {
+protocol PostCellProtocol {
+    func setComment(string: String)
+    func setAttributedComment(attrString: NSAttributedString)
+    func setTextViewDelegate(delegate: UITextViewDelegate)
+    func loadImage(imageURL: NSURL)
+}
+
+class PostTableViewCell: UITableViewCell, PostCellProtocol {
 
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var postTextView: UITextView!
@@ -32,5 +40,23 @@ class PostTableViewCell: UITableViewCell {
     
     class func nibPostTableViewCell() -> UINib {
         return UINib(nibName: "PostTableViewCell", bundle: NSBundle.mainBundle())
+    }
+    
+    //MARK: PostCellProtocol
+    
+    func setComment(string: String) {
+        self.postTextView.text = string
+    }
+    
+    func setAttributedComment(attrString: NSAttributedString) {
+        self.postTextView.attributedText = attrString
+    }
+    
+    func setTextViewDelegate(delegate: UITextViewDelegate) {
+        self.postTextView.delegate = delegate
+    }
+    
+    func loadImage(imageURL: NSURL) {
+        self.postImage.af_setImageWithURL(imageURL)
     }
 }

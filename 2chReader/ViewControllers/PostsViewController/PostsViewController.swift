@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import AlamofireImage
 
 class PostsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
 
@@ -26,11 +25,16 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         
         self.tableView.registerNib(PostTableViewCell.nibPostTableViewCell(), forCellReuseIdentifier: PostTableViewCell.identifier())
+        
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.navigationItem.title = self.thread.subject
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(PostsViewController.onTapEvent))
         self.view.addGestureRecognizer(tapRecognizer)
+    }
+    
+    func onTapEvent() {
+        self.popPostFromScreen()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -41,6 +45,14 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
             })
+        }
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        for view in self.pushedPosts {
+            self.setFrameForPushedPost(view)
         }
     }
     
@@ -65,24 +77,16 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(PostTableViewCell.identifier(), forIndexPath: indexPath) as! PostTableViewCell
+        let cell :PostCellProtocol = tableView.dequeueReusableCellWithIdentifier(PostTableViewCell.identifier(), forIndexPath: indexPath) as! PostCellProtocol
         
-        cell.quotesTextView.attributedText = self.attrStrBuilder.attributedString("<a>test</a>")
-        cell.quotesTextView.delegate = self
+        let post: Post = self.thread.posts[indexPath.row]
         
-        let post = self.thread.posts[indexPath.row]
-        if let comment = post.comment {
-            cell.postTextView.attributedText = self.attrStrBuilder.attributedString(comment)
-            cell.postTextView.delegate = self
-        }
-        
+        cell.setComment(post.comment!)
         let fileModel = post.files.first
         if let fileModel = fileModel {
-            let imageUrl = NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: fileModel.thumbPath!))
-            cell.postImage?.af_setImageWithURL(imageUrl!)
+        cell.loadImage(NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: fileModel.thumbPath!))!)
         }
-        
-        return cell
+        return cell as! UITableViewCell
     }
     
     // MARK: - UITableViewDelegate
@@ -96,10 +100,12 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
         // 1) get Post
         let post = Post()
-      //  post.comment = "asdasfgesfaesdfasffgasdfge111111"
+        post.comment = "feswfwef ewfwef efwf ewf ewf ewf ew ffwefwefwef fewfwe "
         self.pushPostOnScreen(post)
         return false
     }
+    
+    // MARK: - Other
     
     func pushPostOnScreen(post: Post) {
         let cell = NSBundle.mainBundle().loadNibNamed("PostTableViewCell", owner: nil, options: nil)[0] as! PostTableViewCell
@@ -116,8 +122,9 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.view.addSubview(cell)
         self.pushedPosts.append(cell)
         self.setFrameForPushedPost(cell)
-        
-        cell.backgroundColor = UIColor.greenColor()
+        cell.backgroundColor = UIColor.cyanColor()
+        cell.contentView.layer.borderColor = UIColor.grayColor().CGColor
+        cell.contentView.layer.borderWidth = 2
     }
     
     func popPostFromScreen() {
@@ -128,24 +135,15 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
     }
     
-    func onTapEvent() {
-        self.popPostFromScreen()
-    }
-    
-    override func viewWillLayoutSubviews() {
-         super.viewWillLayoutSubviews()
-        
-        for view in self.pushedPosts {
-            self.setFrameForPushedPost(view)
-        }
-    }
     func setFrameForPushedPost(view: UIView) {
         var fittingSize = UILayoutFittingCompressedSize
-        fittingSize.width = CGRectGetWidth(self.view.frame)
-        view.frame.size = view.systemLayoutSizeFittingSize(fittingSize, withHorizontalFittingPriority: UILayoutPriorityRequired, verticalFittingPriority: UILayoutPriorityDefaultHigh)
-        let dy = self.pushedPosts.indexOf(view)! * 10
+        let offset: CGFloat = CGFloat(self.pushedPosts.indexOf(view)! * 10)
+        fittingSize.width = CGRectGetWidth(self.view.frame) - 2 * offset
+        view.frame.size = view.systemLayoutSizeFittingSize(fittingSize, withHorizontalFittingPriority: UILayoutPriorityRequired, verticalFittingPriority: UILayoutPriorityDefaultLow)
+        print(view.frame.size)
         var centerPost = self.view.center
-        centerPost.y += CGFloat(dy)
+        centerPost.y += CGFloat(offset)
+        //centerPost.x += CGFloat(offset)
         view.center = centerPost
     }
 }
