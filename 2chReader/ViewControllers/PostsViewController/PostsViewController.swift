@@ -26,6 +26,8 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         self.tableView.registerNib(PostTableViewCell.nibPostTableViewCell(), forCellReuseIdentifier: PostTableViewCell.identifier())
         
+        self.tableView.registerNib(SimplePostTableViewCell.nibPostTableViewCell(), forCellReuseIdentifier: SimplePostTableViewCell.identifier())
+        
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.navigationItem.title = self.thread.subject
         
@@ -77,15 +79,23 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell :PostCellProtocol = tableView.dequeueReusableCellWithIdentifier(PostTableViewCell.identifier(), forIndexPath: indexPath) as! PostCellProtocol
-        
+        var cellIdentifier: String
         let post: Post = self.thread.posts[indexPath.row]
-        
-        cell.setComment(post.comment!)
         let fileModel = post.files.first
-        if let fileModel = fileModel {
-        cell.loadImage(NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: fileModel.thumbPath!))!)
+        if fileModel != nil {
+            cellIdentifier = PostTableViewCell.identifier()
+        } else {
+            cellIdentifier = SimplePostTableViewCell.identifier()
         }
+        
+        let cell :PostCellProtocol = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! PostCellProtocol
+        
+        cell.setAttributedComment(self.attrStrBuilder.attributedString(post.comment!)!)
+        cell.setTextViewDelegate(self)
+        if let fileModel = fileModel {
+            cell.loadImage(NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: fileModel.thumbPath!))!)
+        }
+        
         return cell as! UITableViewCell
     }
     
