@@ -14,6 +14,7 @@ protocol PostCellProtocol {
     func setAttributedComment(attrString: NSAttributedString)
     func setTextViewDelegate(delegate: UITextViewDelegate)
     func loadImage(imageURL: NSURL)
+    func setQuotes(string: String)
 }
 
 class PostTableViewCell: UITableViewCell, PostCellProtocol {
@@ -22,12 +23,14 @@ class PostTableViewCell: UITableViewCell, PostCellProtocol {
     @IBOutlet weak var postTextView: UITextView!
     @IBOutlet weak var quotesTextView: UITextView!
     
+    @IBOutlet weak var quotestLabel: UILabel!
+    @IBOutlet weak var quotestHeight: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.postImage.contentMode = UIViewContentMode.ScaleAspectFit
         self.postImage.clipsToBounds = true
         self.postTextView.linkTextAttributes = [NSForegroundColorAttributeName : UIColor.orangeColor()]
-        self.quotesTextView.linkTextAttributes = [NSForegroundColorAttributeName : UIColor.orangeColor()]
     }
     
     override func prepareForReuse() {
@@ -38,7 +41,7 @@ class PostTableViewCell: UITableViewCell, PostCellProtocol {
         return "PostTableViewCellId"
     }
     
-    class func nibPostTableViewCell() -> UINib {
+    class func nib() -> UINib {
         return UINib(nibName: "PostTableViewCell", bundle: NSBundle.mainBundle())
     }
     
@@ -58,5 +61,9 @@ class PostTableViewCell: UITableViewCell, PostCellProtocol {
     
     func loadImage(imageURL: NSURL) {
         self.postImage.af_setImageWithURL(imageURL)
+    }
+    
+    func setQuotes(string: String) {
+        self.quotestLabel.text = string
     }
 }

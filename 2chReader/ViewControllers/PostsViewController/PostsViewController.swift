@@ -24,9 +24,11 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.registerNib(PostTableViewCell.nibPostTableViewCell(), forCellReuseIdentifier: PostTableViewCell.identifier())
+        self.tableView.registerNib(PostTableViewCell.nib(), forCellReuseIdentifier: PostTableViewCell.identifier())
         
-        self.tableView.registerNib(SimplePostTableViewCell.nibPostTableViewCell(), forCellReuseIdentifier: SimplePostTableViewCell.identifier())
+        self.tableView.registerNib(SimplePostTableViewCell.nib(), forCellReuseIdentifier: SimplePostTableViewCell.identifier())
+        
+        self.tableView.registerNib(ManyPhotosTableViewCell.nib(), forCellReuseIdentifier: ManyPhotosTableViewCell.identifier())
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.navigationItem.title = self.thread.subject
@@ -73,27 +75,22 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         return 1
     }
     
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.thread.posts.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        var cellIdentifier: String
         let post: Post = self.thread.posts[indexPath.row]
-        let fileModel = post.files.first
-        if fileModel != nil {
-            cellIdentifier = PostTableViewCell.identifier()
-        } else {
-            cellIdentifier = SimplePostTableViewCell.identifier()
-        }
+        let identifier = self.cellIdentifierWithPost(post)
         
-        let cell :PostCellProtocol = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! PostCellProtocol
+        let cell :PostCellProtocol = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! PostCellProtocol
         
         cell.setAttributedComment(self.attrStrBuilder.attributedString(post.comment!)!)
         cell.setTextViewDelegate(self)
-        if let fileModel = fileModel {
-            cell.loadImage(NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: fileModel.thumbPath!))!)
+        
+        for file in post.files {
+            cell.loadImage(NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: file.thumbPath!))!)
         }
         
         return cell as! UITableViewCell
@@ -115,26 +112,32 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         return false
     }
     
-    // MARK: - Other
+    // MARK: - Pushed PostView
     
     func pushPostOnScreen(post: Post) {
-        let cell = NSBundle.mainBundle().loadNibNamed("PostTableViewCell", owner: nil, options: nil)[0] as! PostTableViewCell
+        let cell = NSBundle.mainBundle().loadNibNamed(self.nibNameWithPost(post), owner: nil, options: nil)[0] as! PostCellProtocol
+        
+        cell.setQuotes("asefgesf ef ewfw ewf wef ewf few few few fwe fwe ")
         if let comment = post.comment {
-            cell.postTextView.attributedText = self.attrStrBuilder.attributedString(comment)
-            cell.postTextView.delegate = self
+            cell.setAttributedComment(self.attrStrBuilder.attributedString(comment)!)
+            cell.setTextViewDelegate(self)
         }
         
         let fileModel = post.files.first
         if let fileModel = fileModel {
-            let imageUrl = NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: fileModel.thumbPath!))
-            cell.postImage?.af_setImageWithURL(imageUrl!)
+            let imageUrl = NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: fileModel.thumbPath!))!
+            cell.loadImage(imageUrl)
         }
-        self.view.addSubview(cell)
-        self.pushedPosts.append(cell)
-        self.setFrameForPushedPost(cell)
-        cell.backgroundColor = UIColor.cyanColor()
-        cell.contentView.layer.borderColor = UIColor.grayColor().CGColor
-        cell.contentView.layer.borderWidth = 2
+        
+        let viewCell = cell as! UITableViewCell
+        self.view.addSubview(viewCell)
+        self.pushedPosts.append(viewCell)
+        self.setFrameForPushedPost(viewCell)
+        
+        //debug
+        viewCell.backgroundColor = UIColor.cyanColor()
+        viewCell.contentView.layer.borderColor = UIColor.grayColor().CGColor
+        viewCell.contentView.layer.borderWidth = 2
     }
     
     func popPostFromScreen() {
@@ -155,5 +158,29 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         centerPost.y += CGFloat(offset)
         //centerPost.x += CGFloat(offset)
         view.center = centerPost
+    }
+    
+    //MARK: Utils
+    
+    func cellIdentifierWithPost(post: Post) -> String {
+        switch post.type {
+        case .NoImagePost:
+            return SimplePostTableViewCell.identifier()
+        case .OneImagePost:
+            return PostTableViewCell.identifier()
+        case .ManyImagePost:
+            return ManyPhotosTableViewCell.identifier()
+        }
+    }
+    
+    func nibNameWithPost(post: Post) -> String {
+        switch post.type {
+        case .NoImagePost:
+            return "SimplePostTableViewCell"
+        case .OneImagePost:
+            return "PostTableViewCell"
+        case .ManyImagePost:
+            return "ManyPhotosTableViewCell"
+        }
     }
 }

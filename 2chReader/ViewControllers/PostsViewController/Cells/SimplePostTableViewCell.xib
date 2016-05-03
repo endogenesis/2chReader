@@ -20,26 +20,27 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ncx-FK-mOo" userLabel="Quotes Text View">
-                        <rect key="frame" x="8" y="49" width="304" height="47"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMF-s1-lXW" userLabel="quotesLabel">
+                        <rect key="frame" x="8" y="49" width="304" height="39"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    </textView>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Ncx-FK-mOo" firstAttribute="top" secondItem="04v-Rd-ye6" secondAttribute="bottom" constant="8" id="CbN-gp-K5A"/>
-                    <constraint firstAttribute="bottom" secondItem="Ncx-FK-mOo" secondAttribute="bottom" id="Nup-Qy-uli"/>
-                    <constraint firstItem="Ncx-FK-mOo" firstAttribute="leading" secondItem="uaF-q1-gOK" secondAttribute="leading" constant="8" id="RB6-fK-6a1"/>
+                    <constraint firstItem="NMF-s1-lXW" firstAttribute="top" secondItem="04v-Rd-ye6" secondAttribute="bottom" constant="8" id="2Jw-Qd-iTJ"/>
+                    <constraint firstItem="NMF-s1-lXW" firstAttribute="leading" secondItem="uaF-q1-gOK" secondAttribute="leading" constant="8" id="9IQ-3s-moJ"/>
+                    <constraint firstAttribute="bottom" secondItem="NMF-s1-lXW" secondAttribute="bottom" constant="8" id="ZvP-6n-ZK4"/>
                     <constraint firstItem="04v-Rd-ye6" firstAttribute="leading" secondItem="uaF-q1-gOK" secondAttribute="leading" constant="8" id="b0x-2l-JPq"/>
                     <constraint firstItem="04v-Rd-ye6" firstAttribute="top" secondItem="uaF-q1-gOK" secondAttribute="top" constant="8" id="bJ8-vg-Z5D"/>
                     <constraint firstAttribute="trailing" secondItem="04v-Rd-ye6" secondAttribute="trailing" constant="8" id="fYH-c0-LCg"/>
-                    <constraint firstAttribute="trailing" secondItem="Ncx-FK-mOo" secondAttribute="trailing" constant="8" id="iCz-4i-oin"/>
+                    <constraint firstAttribute="trailing" secondItem="NMF-s1-lXW" secondAttribute="trailing" constant="8" id="w9d-wV-RNQ"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="postTextView" destination="04v-Rd-ye6" id="V5V-qT-fUQ"/>
-                <outlet property="quotesTextView" destination="Ncx-FK-mOo" id="EXy-mv-7jH"/>
+                <outlet property="quotesLabel" destination="NMF-s1-lXW" id="iXR-Qz-57X"/>
             </connections>
             <point key="canvasLocation" x="285" y="291.5"/>
         </tableViewCell>

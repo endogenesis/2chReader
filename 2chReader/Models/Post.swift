@@ -10,6 +10,12 @@ import UIKit
 import ObjectMapper
 import RealmSwift
 
+enum PostType: Int {
+    case NoImagePost = 1
+    case OneImagePost
+    case ManyImagePost
+}
+
 class Post: Object, Mappable {
     
     dynamic var num: String?
@@ -18,6 +24,17 @@ class Post: Object, Mappable {
     dynamic var date :String?
     var timestamp: Int?
     var files = List<FileModel>()
+    
+    var type: PostType {
+        switch files.count {
+        case 0:
+            return .NoImagePost
+        case 1:
+            return .OneImagePost
+        default:
+            return .ManyImagePost
+        }
+    }
     
     required convenience init?(_ map: Map) {
         self.init()
