@@ -8,8 +8,9 @@
 
 import UIKit
 import RealmSwift
+import OGVKit
 
-class PostsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
+class PostsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, OGVPlayerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -115,29 +116,37 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     // MARK: - Pushed PostView
     
     func pushPostOnScreen(post: Post) {
-        let cell = NSBundle.mainBundle().loadNibNamed(self.nibNameWithPost(post), owner: nil, options: nil)[0] as! PostCellProtocol
+        let playerView = OGVPlayerView(frame: view.bounds)
+        view.addSubview(playerView)
         
-        cell.setQuotes("asefgesf ef ewfw ewf wef ewf few few few fwe fwe ")
-        if let comment = post.comment {
-            cell.setAttributedComment(self.attrStrBuilder.attributedString(comment)!)
-            cell.setTextViewDelegate(self)
-        }
+        playerView.delegate = self; // implement OGVPlayerDelegate protocol
+        playerView.sourceURL = NSURL(string: "https://2ch.hk/b/src/125575950/14624613234410.webm")
         
-        let fileModel = post.files.first
-        if let fileModel = fileModel {
-            let imageUrl = NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: fileModel.thumbPath!))!
-            cell.loadImage(imageUrl)
-        }
-        
-        let viewCell = cell as! UITableViewCell
-        self.view.addSubview(viewCell)
-        self.pushedPosts.append(viewCell)
-        self.setFrameForPushedPost(viewCell)
-        
-        //debug
-        viewCell.backgroundColor = UIColor.cyanColor()
-        viewCell.contentView.layer.borderColor = UIColor.grayColor().CGColor
-        viewCell.contentView.layer.borderWidth = 2
+        playerView.play()
+//
+//        let cell = NSBundle.mainBundle().loadNibNamed(self.nibNameWithPost(post), owner: nil, options: nil)[0] as! PostCellProtocol
+//        
+//        cell.setQuotes("asefgesf ef ewfw ewf wef ewf few few few fwe fwe ")
+//        if let comment = post.comment {
+//            cell.setAttributedComment(self.attrStrBuilder.attributedString(comment)!)
+//            cell.setTextViewDelegate(self)
+//        }
+//        
+//        let fileModel = post.files.first
+//        if let fileModel = fileModel {
+//            let imageUrl = NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: fileModel.thumbPath!))!
+//            cell.loadImage(imageUrl)
+//        }
+//        
+//        let viewCell = cell as! UITableViewCell
+//        self.view.addSubview(viewCell)
+//        self.pushedPosts.append(viewCell)
+//        self.setFrameForPushedPost(viewCell)
+//        
+//        //debug
+//        viewCell.backgroundColor = UIColor.cyanColor()
+//        viewCell.contentView.layer.borderColor = UIColor.grayColor().CGColor
+//        viewCell.contentView.layer.borderWidth = 2
     }
     
     func popPostFromScreen() {

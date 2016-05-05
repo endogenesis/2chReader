@@ -1,32 +1,93 @@
 PODS:
-  - Alamofire (3.1.5)
-  - AlamofireImage (2.3.0):
-    - Alamofire (~> 3.1)
-  - AlamofireObjectMapper (2.1.0):
-    - Alamofire (~> 3.1.0)
+  - Alamofire (3.3.1)
+  - AlamofireImage (2.4.0):
+    - Alamofire (~> 3.3)
+  - AlamofireObjectMapper (2.1.2):
+    - Alamofire (~> 3.2)
     - ObjectMapper (~> 1.0)
-  - ObjectMapper (1.1.1)
-  - Realm (0.98.3):
-    - Realm/Headers (= 0.98.3)
-  - Realm/Headers (0.98.3)
-  - RealmSwift (0.98.3):
-    - Realm (= 0.98.3)
+  - libnestegg (0.1)
+  - libogg (1.3.2)
+  - liboggz (1.1.1):
+    - libogg (>= 1.0)
+  - libtheora (1.1.1):
+    - libogg (>= 1.1)
+  - libvorbis (1.3.5):
+    - libogg (>= 1.0)
+  - libvpx (1.5.0-snapshot-20160503)
+  - ObjectMapper (1.2.0)
+  - OGVKit (0.5pre):
+    - OGVKit/libskeleton (= 0.5pre)
+    - OGVKit/Ogg (= 0.5pre)
+    - OGVKit/OggDemuxer (= 0.5pre)
+    - OGVKit/TheoraDecoder (= 0.5pre)
+    - OGVKit/VorbisDecoder (= 0.5pre)
+    - OGVKit/VP8Decoder (= 0.5pre)
+    - OGVKit/WebM (= 0.5pre)
+    - OGVKit/WebMDemuxer (= 0.5pre)
+  - OGVKit/libskeleton (0.5pre):
+    - libogg
+  - OGVKit/Ogg (0.5pre):
+    - OGVKit/Ogg/Theora (= 0.5pre)
+    - OGVKit/Ogg/Vorbis (= 0.5pre)
+  - OGVKit/Ogg/Theora (0.5pre):
+    - OGVKit/OggDemuxer
+    - OGVKit/TheoraDecoder
+    - OGVKit/VorbisDecoder
+  - OGVKit/Ogg/Vorbis (0.5pre):
+    - OGVKit/OggDemuxer
+    - OGVKit/VorbisDecoder
+  - OGVKit/OggDemuxer (0.5pre):
+    - liboggz
+    - OGVKit/libskeleton (~> 0.4)
+  - OGVKit/TheoraDecoder (0.5pre):
+    - libtheora
+  - OGVKit/VorbisDecoder (0.5pre):
+    - libvorbis
+  - OGVKit/VP8Decoder (0.5pre):
+    - libvpx (~> 1.5.0-snapshot-20150502b)
+  - OGVKit/WebM (0.5pre):
+    - OGVKit/WebM/Vorbis (= 0.5pre)
+    - OGVKit/WebM/VP8 (= 0.5pre)
+  - OGVKit/WebM/Vorbis (0.5pre):
+    - OGVKit/VorbisDecoder
+    - OGVKit/WebMDemuxer
+  - OGVKit/WebM/VP8 (0.5pre):
+    - OGVKit/VorbisDecoder
+    - OGVKit/VP8Decoder
+    - OGVKit/WebMDemuxer
+  - OGVKit/WebMDemuxer (0.5pre):
+    - libnestegg
+  - Realm (0.101.0):
+    - Realm/Headers (= 0.101.0)
+  - Realm/Headers (0.101.0)
+  - RealmSwift (0.101.0):
+    - Realm (= 0.101.0)
   - Reveal-iOS-SDK (1.6.2)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
   - AlamofireImage (~> 2.0)
   - AlamofireObjectMapper (~> 2.1)
+  - OGVKit (= 0.5pre)
   - RealmSwift
   - Reveal-iOS-SDK
 
 SPEC CHECKSUMS:
-  Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
-  AlamofireImage: 4013fb5b99b10117bf2554a67b9bd2231d476b45
-  AlamofireObjectMapper: 24097576202064f8b0a583452dd934064f78dc0e
-  ObjectMapper: 4143abed1dbd49b73d75092fe8fa1c88ed6434b7
-  Realm: c6a7d00221a2d5177810a674aebd40c5e0b70b0f
-  RealmSwift: d6ecad6e4c2a645d6ac956c2c7e9efb375f39c31
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
+  AlamofireObjectMapper: 82391c31f23e37bdb2660da174bcf81b202da39d
+  libnestegg: 29be3e4d84978423ab8a282476c099aa221d1c4e
+  libogg: 924cd993b3fcf4d93568f7d582496061ef82716e
+  liboggz: 6605f8cd394de0fe330957507179f6bdcce716d1
+  libtheora: cf6fb3c5c0db661460d0d54d0a343bc38dc766d3
+  libvorbis: ce9ba21bbef15c2060e31e1e33dcdeb3762427b0
+  libvpx: 6313d00b92d2a0c03d776aa718c91c9abd866d3c
+  ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
+  OGVKit: a5e8d16b0982e808770673f5f64cd93d2ad28f94
+  Realm: b21596d6d7e1c054f6fae967d27263d2593ca309
+  RealmSwift: 5247501bcd68b9db3a718cba808e1ce45ba67034
   Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 18a6b6f7dd736d863cd2e1d66152867bdf2791e7
+
+COCOAPODS: 1.0.0.rc.2

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		254C92B28AD0DEBDF47ADD55 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A87BBCA02D5E8843B5AD0FF /* Pods.framework */; };
+		1C3D3EAA0E6CE8B7CCED615F /* Pods_2chReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD68CB5D569BEC594222EE4F /* Pods_2chReader.framework */; };
 		EB1098B31C96B0BD003A1259 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1098B21C96B0BD003A1259 /* PostsViewController.swift */; };
 		EB349EA61CD8E0B3004027B1 /* ManyPhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB349EA41CD8E0B3004027B1 /* ManyPhotosTableViewCell.swift */; };
 		EB349EA71CD8E0B3004027B1 /* ManyPhotosTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB349EA51CD8E0B3004027B1 /* ManyPhotosTableViewCell.xib */; };
@@ -36,9 +36,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4709684D236240136E2763B8 /* Pods-2chReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-2chReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-2chReader/Pods-2chReader.debug.xcconfig"; sourceTree = "<group>"; };
 		4A87BBCA02D5E8843B5AD0FF /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		538220ECE339E90389DDD9A5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		89E6A3E487372A8FF0E4F321 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		9112D894A97E02CE9BC776AD /* Pods-2chReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-2chReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-2chReader/Pods-2chReader.release.xcconfig"; sourceTree = "<group>"; };
+		DD68CB5D569BEC594222EE4F /* Pods_2chReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_2chReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB1098B21C96B0BD003A1259 /* PostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostsViewController.swift; path = ViewControllers/PostsViewController/PostsViewController.swift; sourceTree = "<group>"; };
 		EB349EA41CD8E0B3004027B1 /* ManyPhotosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManyPhotosTableViewCell.swift; path = ViewControllers/PostsViewController/Cells/ManyPhotosTableViewCell.swift; sourceTree = "<group>"; };
 		EB349EA51CD8E0B3004027B1 /* ManyPhotosTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ManyPhotosTableViewCell.xib; path = ViewControllers/PostsViewController/Cells/ManyPhotosTableViewCell.xib; sourceTree = "<group>"; };
@@ -73,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				254C92B28AD0DEBDF47ADD55 /* Pods.framework in Frameworks */,
+				1C3D3EAA0E6CE8B7CCED615F /* Pods_2chReader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,15 +85,16 @@
 			isa = PBXGroup;
 			children = (
 				4A87BBCA02D5E8843B5AD0FF /* Pods.framework */,
+				DD68CB5D569BEC594222EE4F /* Pods_2chReader.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DEBD2B4FD12482A78D4BE575 /* Pods */ = {
+		E84069CD6605C001CC898102 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				538220ECE339E90389DDD9A5 /* Pods.debug.xcconfig */,
-				89E6A3E487372A8FF0E4F321 /* Pods.release.xcconfig */,
+				4709684D236240136E2763B8 /* Pods-2chReader.debug.xcconfig */,
+				9112D894A97E02CE9BC776AD /* Pods-2chReader.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -142,8 +144,8 @@
 			children = (
 				EB9A1AC31C60BF3A00A66419 /* 2chReader */,
 				EB9A1AC21C60BF3A00A66419 /* Products */,
-				DEBD2B4FD12482A78D4BE575 /* Pods */,
 				C29B0FA7A4E72601C8F9332F /* Frameworks */,
+				E84069CD6605C001CC898102 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -228,12 +230,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB9A1AD31C60BF3A00A66419 /* Build configuration list for PBXNativeTarget "2chReader" */;
 			buildPhases = (
-				D4486B258395AE68D539B259 /* Check Pods Manifest.lock */,
+				8B9D379142FD8D9B5A5F3DBB /* 📦 Check Pods Manifest.lock */,
 				EB9A1ABD1C60BF3A00A66419 /* Sources */,
 				EB9A1ABE1C60BF3A00A66419 /* Frameworks */,
 				EB9A1ABF1C60BF3A00A66419 /* Resources */,
-				A7104E22B4DCC6F179FF4050 /* Embed Pods Frameworks */,
-				82250B45556F9297D637AB2B /* Copy Pods Resources */,
+				6A5605FC6F44818DB17FC25C /* 📦 Embed Pods Frameworks */,
+				88FBB408896C0EE6546534FB /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -298,44 +300,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		82250B45556F9297D637AB2B /* Copy Pods Resources */ = {
+		6A5605FC6F44818DB17FC25C /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-2chReader/Pods-2chReader-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A7104E22B4DCC6F179FF4050 /* Embed Pods Frameworks */ = {
+		88FBB408896C0EE6546534FB /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-2chReader/Pods-2chReader-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D4486B258395AE68D539B259 /* Check Pods Manifest.lock */ = {
+		8B9D379142FD8D9B5A5F3DBB /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,7 +478,7 @@
 		};
 		EB9A1AD41C60BF3A00A66419 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 538220ECE339E90389DDD9A5 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 4709684D236240136E2763B8 /* Pods-2chReader.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -492,7 +494,7 @@
 		};
 		EB9A1AD51C60BF3A00A66419 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89E6A3E487372A8FF0E4F321 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 9112D894A97E02CE9BC776AD /* Pods-2chReader.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

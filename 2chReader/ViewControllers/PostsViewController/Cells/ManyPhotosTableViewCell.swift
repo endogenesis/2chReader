@@ -18,6 +18,12 @@ class ManyPhotosTableViewCell: UITableViewCell, PostCellProtocol {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        for imageView in self.files {
+            imageView.contentMode = UIViewContentMode.ScaleAspectFit
+            imageView.clipsToBounds = true
+        }
+        
         self.postTextView.linkTextAttributes = [NSForegroundColorAttributeName : UIColor.orangeColor()]
     }
     
@@ -57,7 +63,6 @@ class ManyPhotosTableViewCell: UITableViewCell, PostCellProtocol {
     }
     
     func loadImage(imageURL: NSURL) {
-        
         //debug
         if self.imageViewToLoadNext > 3 {
             print("fileModel count in post more than 4")
