@@ -49,9 +49,12 @@ class SimplePostTableViewCell: UITableViewCell, PostCellProtocol {
         self.postTextView.delegate = delegate
     }
     
-    func loadImage(imageURL: NSURL) {
-        print("without image")
+    func setMediaFile(thumbURL: NSURL, path: String, isWebm: Bool) {
     }
+    
+    func setMediaViewerDelegate(delegate: PostCellMediaDelegate) {
+    }
+    
     
     func setQuotes(string: String) {
         self.quotesLabel.text = string

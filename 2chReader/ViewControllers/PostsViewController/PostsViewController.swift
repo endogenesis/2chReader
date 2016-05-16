@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import OGVKit
 
-class PostsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, OGVPlayerDelegate {
+class PostsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, OGVPlayerDelegate, PostCellMediaDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -89,9 +89,10 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         cell.setAttributedComment(self.attrStrBuilder.attributedString(post.comment!)!)
         cell.setTextViewDelegate(self)
-        
+        cell.setMediaViewerDelegate(self)
         for file in post.files {
-            cell.loadImage(NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: file.thumbPath!))!)
+            let isWebm: Bool = file.fileModelType == .FileModelWebm ? true : false
+            cell.setMediaFile(NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: file.thumbPath!))!, path: file.fullImagePath!, isWebm: isWebm)
         }
         
         return cell as! UITableViewCell
@@ -113,40 +114,45 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         return false
     }
     
-    // MARK: - Pushed PostView
+    // MARK: - PostCellMediaDelegate
     
-    func pushPostOnScreen(post: Post) {
+    func playWebm(path: String) {
         let playerView = OGVPlayerView(frame: view.bounds)
         view.addSubview(playerView)
         
         playerView.delegate = self; // implement OGVPlayerDelegate protocol
-        playerView.sourceURL = NSURL(string: "https://2ch.hk/b/src/125575950/14624613234410.webm")
+        playerView.sourceURL = NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: path))!
         
         playerView.play()
+    }
+    
+    // MARK: - Pushed PostView
+    
+    func pushPostOnScreen(post: Post) {
 //
-//        let cell = NSBundle.mainBundle().loadNibNamed(self.nibNameWithPost(post), owner: nil, options: nil)[0] as! PostCellProtocol
-//        
-//        cell.setQuotes("asefgesf ef ewfw ewf wef ewf few few few fwe fwe ")
-//        if let comment = post.comment {
-//            cell.setAttributedComment(self.attrStrBuilder.attributedString(comment)!)
-//            cell.setTextViewDelegate(self)
-//        }
-//        
-//        let fileModel = post.files.first
-//        if let fileModel = fileModel {
-//            let imageUrl = NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: fileModel.thumbPath!))!
-//            cell.loadImage(imageUrl)
-//        }
-//        
-//        let viewCell = cell as! UITableViewCell
-//        self.view.addSubview(viewCell)
-//        self.pushedPosts.append(viewCell)
-//        self.setFrameForPushedPost(viewCell)
-//        
-//        //debug
-//        viewCell.backgroundColor = UIColor.cyanColor()
-//        viewCell.contentView.layer.borderColor = UIColor.grayColor().CGColor
-//        viewCell.contentView.layer.borderWidth = 2
+
+        let cell = NSBundle.mainBundle().loadNibNamed(self.nibNameWithPost(post), owner: nil, options: nil)[0] as! PostCellProtocol
+        
+        cell.setQuotes("asefgesf ef ewfw ewf wef ewf few few few fwe fwe ")
+        if let comment = post.comment {
+            cell.setAttributedComment(self.attrStrBuilder.attributedString(comment)!)
+            cell.setTextViewDelegate(self)
+        }
+        
+        for file in post.files {
+            let isWebm: Bool = file.fileModelType == .FileModelWebm ? true : false
+            cell.setMediaFile(NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: file.thumbPath!))!, path: file.fullImagePath!, isWebm: isWebm)
+        }
+        
+        let viewCell = cell as! UITableViewCell
+        self.view.addSubview(viewCell)
+        self.pushedPosts.append(viewCell)
+        self.setFrameForPushedPost(viewCell)
+        
+        //debug
+        viewCell.backgroundColor = UIColor.cyanColor()
+        viewCell.contentView.layer.borderColor = UIColor.grayColor().CGColor
+        viewCell.contentView.layer.borderWidth = 2
     }
     
     func popPostFromScreen() {

@@ -54,10 +54,28 @@ class Post: Object, Mappable {
     }
 }
 
+enum FileModelType: Int {
+    case FileModelImage
+    case FileModelWebm
+    case FileModelUnknown
+}
+
 class FileModel: Object, Mappable {
     
     dynamic var thumbPath: String?
     dynamic var fullImagePath: String?
+    
+    dynamic var type: Int = 0
+    var fileModelType :FileModelType {
+            switch type {
+            case 1:
+                return .FileModelImage
+            case 6:
+                return .FileModelWebm
+            default:
+                return .FileModelUnknown
+            }
+    }
     
     required convenience init?(_ map: Map) {
         self.init()
@@ -66,6 +84,7 @@ class FileModel: Object, Mappable {
     func mapping(map: Map) {
         thumbPath <- map["thumbnail"]
         fullImagePath <- map["path"]
+        type <- map["type"]
     }
 }
 

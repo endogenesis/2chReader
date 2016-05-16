@@ -11,6 +11,7 @@
 		EB1098B31C96B0BD003A1259 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1098B21C96B0BD003A1259 /* PostsViewController.swift */; };
 		EB349EA61CD8E0B3004027B1 /* ManyPhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB349EA41CD8E0B3004027B1 /* ManyPhotosTableViewCell.swift */; };
 		EB349EA71CD8E0B3004027B1 /* ManyPhotosTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB349EA51CD8E0B3004027B1 /* ManyPhotosTableViewCell.xib */; };
+		EB629D331CE9F16500DF8674 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB629D321CE9F16500DF8674 /* Media.xcassets */; };
 		EB6A3FD31CC8CF4000FE7C9B /* SimplePostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6A3FD11CC8CF4000FE7C9B /* SimplePostTableViewCell.swift */; };
 		EB6A3FD41CC8CF4000FE7C9B /* SimplePostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB6A3FD21CC8CF4000FE7C9B /* SimplePostTableViewCell.xib */; };
 		EB6A3FD71CC8CF5F00FE7C9B /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6A3FD51CC8CF5F00FE7C9B /* PostTableViewCell.swift */; };
@@ -22,7 +23,6 @@
 		EB7D359B1C91BC2A001A1ACB /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7D359A1C91BC2A001A1ACB /* Board.swift */; };
 		EB9A1AC51C60BF3A00A66419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9A1AC41C60BF3A00A66419 /* AppDelegate.swift */; };
 		EB9A1ACA1C60BF3A00A66419 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB9A1AC81C60BF3A00A66419 /* Main.storyboard */; };
-		EB9A1ACC1C60BF3A00A66419 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB9A1ACB1C60BF3A00A66419 /* Assets.xcassets */; };
 		EB9A1ACF1C60BF3A00A66419 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB9A1ACD1C60BF3A00A66419 /* LaunchScreen.storyboard */; };
 		EB9A1ADA1C60D0A400A66419 /* Boards.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB9A1AD91C60D0A400A66419 /* Boards.plist */; };
 		EB9A1AE31C60E9C500A66419 /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9A1AE21C60E9C500A66419 /* ResourceManager.swift */; };
@@ -43,6 +43,7 @@
 		EB1098B21C96B0BD003A1259 /* PostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostsViewController.swift; path = ViewControllers/PostsViewController/PostsViewController.swift; sourceTree = "<group>"; };
 		EB349EA41CD8E0B3004027B1 /* ManyPhotosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManyPhotosTableViewCell.swift; path = ViewControllers/PostsViewController/Cells/ManyPhotosTableViewCell.swift; sourceTree = "<group>"; };
 		EB349EA51CD8E0B3004027B1 /* ManyPhotosTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ManyPhotosTableViewCell.xib; path = ViewControllers/PostsViewController/Cells/ManyPhotosTableViewCell.xib; sourceTree = "<group>"; };
+		EB629D321CE9F16500DF8674 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = 2chReader/Media.xcassets; sourceTree = "<group>"; };
 		EB6A3FD11CC8CF4000FE7C9B /* SimplePostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimplePostTableViewCell.swift; path = ViewControllers/PostsViewController/Cells/SimplePostTableViewCell.swift; sourceTree = "<group>"; };
 		EB6A3FD21CC8CF4000FE7C9B /* SimplePostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SimplePostTableViewCell.xib; path = ViewControllers/PostsViewController/Cells/SimplePostTableViewCell.xib; sourceTree = "<group>"; };
 		EB6A3FD51CC8CF5F00FE7C9B /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostTableViewCell.swift; path = ViewControllers/PostsViewController/Cells/PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -55,7 +56,6 @@
 		EB9A1AC11C60BF3A00A66419 /* 2chReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2chReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9A1AC41C60BF3A00A66419 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB9A1AC91C60BF3A00A66419 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		EB9A1ACB1C60BF3A00A66419 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB9A1ACE1C60BF3A00A66419 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB9A1AD01C60BF3A00A66419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB9A1AD91C60D0A400A66419 /* Boards.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Boards.plist; sourceTree = "<group>"; };
@@ -142,6 +142,7 @@
 		EB9A1AB81C60BF3A00A66419 = {
 			isa = PBXGroup;
 			children = (
+				EB629D321CE9F16500DF8674 /* Media.xcassets */,
 				EB9A1AC31C60BF3A00A66419 /* 2chReader */,
 				EB9A1AC21C60BF3A00A66419 /* Products */,
 				C29B0FA7A4E72601C8F9332F /* Frameworks */,
@@ -165,7 +166,6 @@
 				EB9A1AD81C60C31900A66419 /* ViewControllers */,
 				EBBC0A791CA41EC3005F0ACD /* Utils */,
 				EB9A1AC81C60BF3A00A66419 /* Main.storyboard */,
-				EB9A1ACB1C60BF3A00A66419 /* Assets.xcassets */,
 				EB9A1ACD1C60BF3A00A66419 /* LaunchScreen.storyboard */,
 				EB9A1AD01C60BF3A00A66419 /* Info.plist */,
 				EB9A1AD91C60D0A400A66419 /* Boards.plist */,
@@ -290,9 +290,9 @@
 				EB9A1ADA1C60D0A400A66419 /* Boards.plist in Resources */,
 				EB349EA71CD8E0B3004027B1 /* ManyPhotosTableViewCell.xib in Resources */,
 				EB9EACF01C96BE36001D7B9E /* ThreadTableViewCell.xib in Resources */,
-				EB9A1ACC1C60BF3A00A66419 /* Assets.xcassets in Resources */,
 				EB9A1ACA1C60BF3A00A66419 /* Main.storyboard in Resources */,
 				EB6A3FD41CC8CF4000FE7C9B /* SimplePostTableViewCell.xib in Resources */,
+				EB629D331CE9F16500DF8674 /* Media.xcassets in Resources */,
 				EB6A3FD81CC8CF5F00FE7C9B /* PostTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
