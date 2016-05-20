@@ -28,7 +28,7 @@ class PostTableViewCell: UITableViewCell, PostCellProtocol {
     weak var mediaViewer: PostCellMediaDelegate? = nil
 
     //TODO: Create subclassOfImageView with eventHandler
-    @IBOutlet weak var postImage: UIImageView!
+    @IBOutlet weak var postImage: MediaImageView!
     
     @IBOutlet weak var postTextView: UITextView!
     @IBOutlet weak var quotesTextView: UITextView!
@@ -88,8 +88,6 @@ class PostTableViewCell: UITableViewCell, PostCellProtocol {
         self.mediaFilePath = path
         if isWebm {
             let playImageView = UIImageView(image: UIImage(named: "playVideo"))
-            playImageView.frame.size.height = 20
-            playImageView.frame.size.width = 20
             self.postImage.addSubview(playImageView)
             playImageView.center = self.postImage.center
         }

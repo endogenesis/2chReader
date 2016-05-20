@@ -16,7 +16,7 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     var thread: Thread = Thread()
     var board: BoardRealm = BoardRealm()
-    var pushedPosts: Array<UIView> = Array()
+    var pushedPosts: [UIView] = []
     
     let attrStrBuilder = AttributedStringBuilder()
     
