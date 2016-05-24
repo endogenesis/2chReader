@@ -9,10 +9,8 @@
 import UIKit
 
 class ManyPhotosTableViewCell: UITableViewCell, PostCellProtocol {
-    
-    weak var mediaViewer: PostCellMediaDelegate? = nil
 
-    @IBOutlet var files: [UIImageView]!
+    @IBOutlet var files: [MediaImageView]!
     var mediaFilePaths: [String] = []
     var imageViewToLoadNext = 0
     
@@ -70,18 +68,18 @@ class ManyPhotosTableViewCell: UITableViewCell, PostCellProtocol {
         if self.imageViewToLoadNext > 3 {
             print("fileModel count in post more than 4")
         }
-        self.files[self.imageViewToLoadNext].af_setImageWithURL(thumbURL)
-        self.mediaFilePaths.append(path)
-        if isWebm {
-            let playImageView = UIImageView(image: UIImage(named: "playVideo"))
-            self.files[self.imageViewToLoadNext].addSubview(playImageView)
-            playImageView.center = self.files[self.imageViewToLoadNext].center
-        }
+        
+        let mediaView = self.files[self.imageViewToLoadNext]
+        mediaView.af_setImageWithURL(thumbURL)
+        mediaView.mediaPath = path
+        mediaView.isWebm = isWebm
         self.imageViewToLoadNext += 1
     }
     
-    func setMediaViewerDelegate(delegate: PostCellMediaDelegate) {
-        self.mediaViewer = delegate
+    func setMediaViewerDelegate(delegate: MediaImageViewDelegate) {
+        for mediaView in self.files {
+            mediaView.delegate = delegate
+        }
     }
     
     func setQuotes(string: String) {

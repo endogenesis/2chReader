@@ -13,21 +13,13 @@ protocol PostCellProtocol {
     func setComment(string: String)
     func setAttributedComment(attrString: NSAttributedString)
     func setTextViewDelegate(delegate: UITextViewDelegate)
-    func setMediaViewerDelegate(delegate: PostCellMediaDelegate)
+    func setMediaViewerDelegate(delegate: MediaImageViewDelegate)
     func setMediaFile(thumbURL: NSURL, path: String, isWebm: Bool)
     func setQuotes(string: String)
 }
 
-protocol PostCellMediaDelegate: class {
-    func playWebm(path: String)
-   // func showFullImage()
-}
-
 class PostTableViewCell: UITableViewCell, PostCellProtocol {
-    
-    weak var mediaViewer: PostCellMediaDelegate? = nil
 
-    //TODO: Create subclassOfImageView with eventHandler
     @IBOutlet weak var postImage: MediaImageView!
     
     @IBOutlet weak var postTextView: UITextView!
@@ -36,21 +28,15 @@ class PostTableViewCell: UITableViewCell, PostCellProtocol {
     @IBOutlet weak var quotestLabel: UILabel!
     @IBOutlet weak var quotestHeight: NSLayoutConstraint!
     
-    var mediaFilePath: String? = nil
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.postImage.contentMode = UIViewContentMode.ScaleAspectFit
         self.postImage.clipsToBounds = true
         self.postTextView.linkTextAttributes = [NSForegroundColorAttributeName : UIColor.orangeColor()]
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PostTableViewCell.imageViewTapped))
-        gestureRecognizer.numberOfTapsRequired = 1
-        self.postImage.addGestureRecognizer(gestureRecognizer)
     }
     
     override func prepareForReuse() {
         self.postImage.image = nil
-        self.mediaFilePath = nil
     }
 
     class func identifier() -> String {
@@ -59,14 +45,6 @@ class PostTableViewCell: UITableViewCell, PostCellProtocol {
     
     class func nib() -> UINib {
         return UINib(nibName: "PostTableViewCell", bundle: NSBundle.mainBundle())
-    }
-    
-    //MARK: Action
-    
-    func imageViewTapped() {
-        if let mediaFilePath = self.mediaFilePath {
-            self.mediaViewer?.playWebm(mediaFilePath)
-        }
     }
     
     //MARK: PostCellProtocol
@@ -85,16 +63,12 @@ class PostTableViewCell: UITableViewCell, PostCellProtocol {
     
     func setMediaFile(thumbURL: NSURL, path: String, isWebm: Bool) {
         self.postImage.af_setImageWithURL(thumbURL)
-        self.mediaFilePath = path
-        if isWebm {
-            let playImageView = UIImageView(image: UIImage(named: "playVideo"))
-            self.postImage.addSubview(playImageView)
-            playImageView.center = self.postImage.center
-        }
+        self.postImage.mediaPath = path
+        self.postImage.isWebm = isWebm
     }
     
-    func setMediaViewerDelegate(delegate: PostCellMediaDelegate) {
-        self.mediaViewer = delegate
+    func setMediaViewerDelegate(delegate: MediaImageViewDelegate) {
+        self.postImage.delegate = delegate
     }
     
     func setQuotes(string: String) {

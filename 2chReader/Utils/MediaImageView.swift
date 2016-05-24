@@ -9,12 +9,20 @@
 import UIKit
 
 protocol MediaImageViewDelegate:class {
-    func showWebm()
-    func showFullImage()
+    func showWebm(path: String)
+    //func showFullImage()
 }
 
 class MediaImageView: UIImageView {
-    var isWebm = false
+    var isWebm: Bool = false {
+        didSet {
+            if self.isWebm {
+                self.showWebmButton()
+            } else {
+                self.hideWebmButton()
+            }
+        }
+    }
     var mediaPath: String = ""
     var playImageView: UIImageView? = nil
     weak var delegate: MediaImageViewDelegate? = nil
@@ -27,7 +35,8 @@ class MediaImageView: UIImageView {
     
     override func layoutSubviews() {
         if let playImageView = self.playImageView {
-            playImageView.center = self.center
+            let center = CGPoint(x: CGRectGetMidX(self.bounds), y: CGRectGetMidY(self.bounds))
+            playImageView.center = center
         }
     }
     
@@ -49,9 +58,9 @@ class MediaImageView: UIImageView {
     func tapped() {
         if let delegate = self.delegate {
             if isWebm {
-                delegate.showWebm()
+                delegate.showWebm(self.mediaPath)
             } else {
-                delegate.showFullImage()
+               // delegate.showFullImage()
             }
         }
     }

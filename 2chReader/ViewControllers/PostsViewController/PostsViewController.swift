@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import OGVKit
 
-class PostsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, OGVPlayerDelegate, PostCellMediaDelegate {
+class PostsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, OGVPlayerDelegate, MediaImageViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -87,11 +87,12 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let cell :PostCellProtocol = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! PostCellProtocol
         
-        cell.setAttributedComment(self.attrStrBuilder.attributedString(post.comment!)!)
+        //cell.setAttributedComment(self.attrStrBuilder.attributedString(post.comment!)!)
+        cell.setAttributedComment(self.attrStrBuilder.mimicAttrStr(post.comment!)!)
         cell.setTextViewDelegate(self)
         cell.setMediaViewerDelegate(self)
         for file in post.files {
-            let isWebm: Bool = file.fileModelType == .FileModelWebm ? true : false
+            let isWebm = file.fileModelType == .FileModelWebm ? true : false
             cell.setMediaFile(NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: file.thumbPath!))!, path: file.fullImagePath!, isWebm: isWebm)
         }
         
@@ -114,9 +115,9 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         return false
     }
     
-    // MARK: - PostCellMediaDelegate
+    // MARK: - MediaImageViewDelegate
     
-    func playWebm(path: String) {
+    func showWebm(path: String) {
         let playerView = OGVPlayerView(frame: view.bounds)
         view.addSubview(playerView)
         

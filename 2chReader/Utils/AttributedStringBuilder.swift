@@ -43,6 +43,11 @@ class AttributedStringBuilder {
     
     let tagsToProcess = [boldTag, italicTag, linkTag, underlineTag, strikeTag]
     
+    func mimicAttrStr(str: String) -> NSAttributedString? {
+        let attrStr = NSAttributedString(string: str)
+        return attrStr
+    }
+    
     func attributedString(stringWithTags: String) -> NSAttributedString? {
         
         let attrStr = NSMutableAttributedString(string: self.replaceSymbols(stringWithTags))
