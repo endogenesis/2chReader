@@ -20,6 +20,8 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     let attrStrBuilder = AttributedStringBuilder()
     
+    let webmView: OGVPlayerView = OGVPlayerView()
+    
     let realm = try! Realm()
     
     override func viewDidLoad() {
@@ -59,6 +61,8 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         for view in self.pushedPosts {
             self.setFrameForPushedPost(view)
         }
+        
+        self.webmView.frame = self.view.bounds
     }
     
     // MARK: - Realm
@@ -87,8 +91,8 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let cell :PostCellProtocol = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! PostCellProtocol
         
-        //cell.setAttributedComment(self.attrStrBuilder.attributedString(post.comment!)!)
-        cell.setAttributedComment(self.attrStrBuilder.mimicAttrStr(post.comment!)!)
+        cell.setAttributedComment(self.attrStrBuilder.attributedString(post.comment!)!)
+        //cell.setAttributedComment(self.attrStrBuilder.mimicAttrStr(post.comment!)!)
         cell.setTextViewDelegate(self)
         cell.setMediaViewerDelegate(self)
         for file in post.files {
@@ -118,20 +122,31 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     // MARK: - MediaImageViewDelegate
     
     func showWebm(path: String) {
-        let playerView = OGVPlayerView(frame: view.bounds)
-        view.addSubview(playerView)
         
-        playerView.delegate = self; // implement OGVPlayerDelegate protocol
-        playerView.sourceURL = NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: path))!
+        view.addSubview(self.webmView)
+        self.addHideWebmButton()
         
-        playerView.play()
+        self.webmView.delegate = self; // implement OGVPlayerDelegate protocol
+        self.webmView.sourceURL = NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: path))!
+        
+        self.webmView.play()
+    }
+    
+    func addHideWebmButton() {
+        let hideWebmButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(PostsViewController.onStopWebmClicked))
+        self.navigationItem.rightBarButtonItem = hideWebmButton
+    }
+    
+    func onStopWebmClicked() {
+        self.navigationItem.rightBarButtonItem = nil
+        self.webmView.pause()
+        self.webmView.sourceURL = nil
+        self.webmView.removeFromSuperview()
     }
     
     // MARK: - Pushed PostView
     
     func pushPostOnScreen(post: Post) {
-//
-
         let cell = NSBundle.mainBundle().loadNibNamed(self.nibNameWithPost(post), owner: nil, options: nil)[0] as! PostCellProtocol
         
         cell.setQuotes("asefgesf ef ewfw ewf wef ewf few few few fwe fwe ")
@@ -139,7 +154,6 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.setAttributedComment(self.attrStrBuilder.attributedString(comment)!)
             cell.setTextViewDelegate(self)
         }
-        
         for file in post.files {
             let isWebm: Bool = file.fileModelType == .FileModelWebm ? true : false
             cell.setMediaFile(NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: file.thumbPath!))!, path: file.fullImagePath!, isWebm: isWebm)
