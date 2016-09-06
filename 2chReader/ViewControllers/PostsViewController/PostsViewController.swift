@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import OGVKit
 
+
 class PostsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, OGVPlayerDelegate, MediaImageViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
@@ -63,6 +64,8 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
         
         self.webmView.frame = self.view.bounds
+        
+       
     }
     
     // MARK: - Realm
@@ -114,7 +117,7 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
         // 1) get Post
         let post = Post()
-        post.comment = "feswfwef ewfwef efwf ewf ewf ewf ew ffwefwefwef fewfwe "
+        post.comment = "Ух бля помню с корешем вдвоём проходили по сетке ебать нам это тогда казалось верхом прогресса, как же интересно было"
         self.pushPostOnScreen(post)
         return false
     }
@@ -149,7 +152,6 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     func pushPostOnScreen(post: Post) {
         let cell = NSBundle.mainBundle().loadNibNamed(self.nibNameWithPost(post), owner: nil, options: nil)[0] as! PostCellProtocol
         
-        cell.setQuotes("asefgesf ef ewfw ewf wef ewf few few few fwe fwe ")
         if let comment = post.comment {
             cell.setAttributedComment(self.attrStrBuilder.attributedString(comment)!)
             cell.setTextViewDelegate(self)
@@ -158,22 +160,31 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
             let isWebm: Bool = file.fileModelType == .FileModelWebm ? true : false
             cell.setMediaFile(NSURL(string: ServerManager.sharedInstance.urlForImage(self.board.id, path: file.thumbPath!))!, path: file.fullImagePath!, isWebm: isWebm)
         }
+        cell.setPushedAppearence()
         
         let viewCell = cell as! UITableViewCell
-        self.view.addSubview(viewCell)
+        viewCell.hidden = true
         self.pushedPosts.append(viewCell)
         self.setFrameForPushedPost(viewCell)
+        self.view.addSubview(viewCell)
         
-        //debug
-        viewCell.backgroundColor = UIColor.cyanColor()
-        viewCell.contentView.layer.borderColor = UIColor.grayColor().CGColor
-        viewCell.contentView.layer.borderWidth = 2
+        dispatch_async(dispatch_get_main_queue()) { 
+            UIView.transitionWithView(viewCell, duration: 0.4, options: [.CurveEaseOut, .TransitionFlipFromBottom], animations: {
+                viewCell.hidden = false
+                }, completion: nil)
+        }
+
     }
     
     func popPostFromScreen() {
         let postOnScreen = self.pushedPosts.last
         if let postOnScreen = postOnScreen {
-            postOnScreen.removeFromSuperview()
+            UIView.transitionWithView(postOnScreen, duration: 0.3, options: [.CurveEaseOut, .TransitionFlipFromTop], animations: { 
+                postOnScreen.hidden = true
+                }, completion: { _ in
+                    postOnScreen.removeFromSuperview()
+            })
+            
             self.pushedPosts.removeLast()
         }
     }
@@ -181,12 +192,13 @@ class PostsViewController: UIViewController, UITableViewDataSource, UITableViewD
     func setFrameForPushedPost(view: UIView) {
         var fittingSize = UILayoutFittingCompressedSize
         let offset: CGFloat = CGFloat(self.pushedPosts.indexOf(view)! * 10)
-        fittingSize.width = CGRectGetWidth(self.view.frame) - 2 * offset
+        fittingSize.width = CGRectGetWidth(self.view.frame) - 2 * offset - 20
         view.frame.size = view.systemLayoutSizeFittingSize(fittingSize, withHorizontalFittingPriority: UILayoutPriorityRequired, verticalFittingPriority: UILayoutPriorityDefaultLow)
         print(view.frame.size)
+        
         var centerPost = self.view.center
         centerPost.y += CGFloat(offset)
-        //centerPost.x += CGFloat(offset)
+        
         view.center = centerPost
     }
     

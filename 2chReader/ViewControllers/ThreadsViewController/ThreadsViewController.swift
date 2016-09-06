@@ -30,6 +30,9 @@ class ThreadsViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewWillAppear(animated: Bool) {
         
         self.loadBoardFromRealm()
+        UIView.animateWithDuration(0.4) { 
+            self.tableView.center.x += 10
+        }
         
         ServerManager.sharedInstance.boardWithThreads(self.currentBoardID, page: 0) { (board) -> Void in
             if let board = board {

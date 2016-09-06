@@ -27,7 +27,7 @@ class Thread: Object, Mappable {
     }
     
     var owner: BoardRealm {
-        return linkingObjects(BoardRealm.self, forProperty: "threads").first!
+        return LinkingObjects(fromType: BoardRealm.self, property: "threads").first!
     }
     
     required convenience init?(_ map: Map) {

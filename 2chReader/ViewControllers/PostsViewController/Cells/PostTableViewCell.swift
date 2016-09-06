@@ -16,6 +16,8 @@ protocol PostCellProtocol {
     func setMediaViewerDelegate(delegate: MediaImageViewDelegate)
     func setMediaFile(thumbURL: NSURL, path: String, isWebm: Bool)
     func setQuotes(string: String)
+    
+    func setPushedAppearence()
 }
 
 class PostTableViewCell: UITableViewCell, PostCellProtocol {
@@ -73,5 +75,15 @@ class PostTableViewCell: UITableViewCell, PostCellProtocol {
     
     func setQuotes(string: String) {
         self.quotestLabel.text = string
+    }
+    
+    func setPushedAppearence() {
+        self.clipsToBounds = true
+        self.backgroundColor = UIColor(red: 0.867, green: 0.867, blue: 0.867, alpha: 1.00)
+        self.postTextView.backgroundColor = UIColor(red: 0.867, green: 0.867, blue: 0.867, alpha: 1.00)
+        self.quotesTextView.backgroundColor = UIColor(red: 0.867, green: 0.867, blue: 0.867, alpha: 1.00)
+        self.contentView.layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.00).CGColor
+        self.contentView.layer.borderWidth = 2
+        self.layer.cornerRadius = 4
     }
 }

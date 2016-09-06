@@ -233,12 +233,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB9A1AD31C60BF3A00A66419 /* Build configuration list for PBXNativeTarget "2chReader" */;
 			buildPhases = (
-				8B9D379142FD8D9B5A5F3DBB /* 📦 Check Pods Manifest.lock */,
+				8B9D379142FD8D9B5A5F3DBB /* [CP] Check Pods Manifest.lock */,
 				EB9A1ABD1C60BF3A00A66419 /* Sources */,
 				EB9A1ABE1C60BF3A00A66419 /* Frameworks */,
 				EB9A1ABF1C60BF3A00A66419 /* Resources */,
-				6A5605FC6F44818DB17FC25C /* 📦 Embed Pods Frameworks */,
-				88FBB408896C0EE6546534FB /* 📦 Copy Pods Resources */,
+				6A5605FC6F44818DB17FC25C /* [CP] Embed Pods Frameworks */,
+				88FBB408896C0EE6546534FB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -303,14 +303,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6A5605FC6F44818DB17FC25C /* 📦 Embed Pods Frameworks */ = {
+		6A5605FC6F44818DB17FC25C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,14 +318,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-2chReader/Pods-2chReader-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		88FBB408896C0EE6546534FB /* 📦 Copy Pods Resources */ = {
+		88FBB408896C0EE6546534FB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,19 +333,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-2chReader/Pods-2chReader-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8B9D379142FD8D9B5A5F3DBB /* 📦 Check Pods Manifest.lock */ = {
+		8B9D379142FD8D9B5A5F3DBB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -488,8 +488,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = 2chReader/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "EN.-chReader1";
+				PRODUCT_BUNDLE_IDENTIFIER = "EN.-chReader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -504,8 +505,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = 2chReader/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "EN.-chReader1";
+				PRODUCT_BUNDLE_IDENTIFIER = "EN.-chReader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

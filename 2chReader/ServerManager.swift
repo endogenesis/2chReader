@@ -8,9 +8,7 @@
 
 import UIKit
 import Alamofire
-import AlamofireImage
 import AlamofireObjectMapper
-
 
 class ServerManager: NSObject {
     
